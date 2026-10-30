@@ -1,3126 +1,435 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full text-base">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#0a1128">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Lab Foto">
-  <title>Calculadora & Tablas de Laboratorio Fotográfico</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a1128">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lab Foto">
+<title>Calculadora & Tablas de Laboratorio Fotográfico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, ::before, ::after {box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e2e8f0;}
+html {line-height: 1.5; -webkit-text-size-adjust: 100%; tab-size: 4; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+html, body {overflow-x: hidden !important; max-width: 100vw !important; position: relative;}
+body {margin: 0; line-height: inherit;}
+hr {height: 0; color: inherit; border-top-width: 1px;}
+h1, h2, h3, h4, h5, h6 {font-size: inherit; font-weight: inherit; margin: 0;}
+a {color: inherit; text-decoration: inherit;}
+b, strong {font-weight: bolder;}
+code, kbd, samp, pre {font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 1em;}
+table {text-indent: 0; border-color: inherit; border-collapse: collapse;}
+button, input, optgroup, select, textarea {font-family: inherit; font-size: 100%; font-weight: inherit; line-height: inherit; color: inherit; margin: 0; padding: 0;}
+button, select {text-transform: none;}
+button, [type='button'], [type='reset'], [type='submit'] {-webkit-appearance: button; background-color: transparent; cursor: pointer;}
+.hidden {display: none !important;}
+.block {display: block;}
+.inline-block {display: inline-block;}
+.inline-flex {display: inline-flex;}
+.flex {display: flex;}
+.grid {display: grid;}
+.fixed {position: fixed;}
+.absolute {position: absolute;}
+.relative {position: relative;}
+.sticky {position: sticky;}
+.inset-0 {inset: 0;}
+.top-0 {top: 0;}
+.z-20 {z-index: 20;}
+.z-30 {z-index: 30;}
+.flex-1 {flex: 1 1 0%;}
+.flex-col {flex-direction: column;}
+.flex-wrap {flex-wrap: wrap;}
+.flex-shrink-0 {flex-shrink: 0;}
+.items-center {align-items: center;}
+.justify-center {justify-content: center;}
+.justify-between {justify-content: space-between;}
+.gap-1 {gap: 0.25rem;}
+.gap-1.5 {gap: 0.375rem;}
+.gap-2 {gap: 0.5rem;}
+.gap-3 {gap: 0.75rem;}
+.gap-5 {gap: 1.25rem;}
+.grid-cols-1 {grid-template-columns: repeat(1, minmax(0, 1fr));}
+.grid-cols-2 {grid-template-columns: repeat(2, minmax(0, 1fr));}
+.w-full {width: 100%;}
+.max-w-5xl {max-width: 64rem;}
+.h-full {height: 100%;}
+.min-h-full {min-height: 100%;}
+.mx-auto {margin-left: auto; margin-right: auto;}
+.p-2 {padding: 0.5rem;}
+.p-3 {padding: 0.75rem;}
+.p-4 {padding: 1rem;}
+.px-2 {padding-left: 0.5rem; padding-right: 0.5rem;}
+.px-3 {padding-left: 0.75rem; padding-right: 0.75rem;}
+.px-4 {padding-left: 1rem; padding-right: 1rem;}
+.py-1.5 {padding-top: 0.375rem; padding-bottom: 0.375rem;}
+.py-2 {padding-top: 0.5rem; padding-bottom: 0.5rem;}
+.py-2.5 {padding-top: 0.625rem; padding-bottom: 0.625rem;}
+.mt-1 {margin-top: 0.25rem;}
+.mt-2 {margin-top: 0.5rem;}
+.mt-4 {margin-top: 1rem;}
+.text-center {text-align: center;}
+.text-xs {font-size: 0.75rem; line-height: 1rem;}
+.text-sm {font-size: 0.875rem; line-height: 1.25rem;}
+.text-base {font-size: 1rem; line-height: 1.5rem;}
+.text-xl {font-size: 1.25rem; line-height: 1.75rem;}
+.text-2xl {font-size: 1.5rem; line-height: 2rem;}
+.font-medium {font-weight: 500;}
+.font-semibold {font-weight: 600;}
+.font-bold {font-weight: 700;}
+.font-black {font-weight: 900;}
+.text-white {color: #ffffff;}
+.text-slate-200 {color: #e2e8f0;}
+.text-slate-300 {color: #cbd5e1;}
+.text-slate-400 {color: #94a3b8;}
+.text-slate-500 {color: #64748b;}
+.text-slate-700 {color: #334155;}
+.text-slate-800 {color: #1e293b;}
+.text-amber-400 {color: #fbbf24;}
+.text-amber-500 {color: #f59e0b;}
+.bg-slate-50 {background-color: #f8fafc;}
+.bg-slate-100 {background-color: #f1f5f9;}
+.bg-slate-800\/80 {background-color: rgba(30, 41, 59, 0.8);}
+.bg-slate-900 {background-color: #0f172a;}
+.border {border-width: 1px;}
+.border-b {border-bottom-width: 1px;}
+.border-slate-200 {border-color: #e2e8f0;}
+.border-slate-700 {border-color: #334155;}
+.rounded-xl {border-radius: 0.75rem;}
+.rounded-2xl {border-radius: 1rem;}
+.shadow-sm {box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);}
+.shadow-lg {box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);}
+.cursor-pointer {cursor: pointer;}
+.select-none {user-select: none;}
+.transition-all {transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms;}
 
-  <style>
+/* Estilos Generales y Modo Día */
+html {font-size: 16px;}
+body {background-color: #bcd9c8 !important; color: #0f291a;}
+.app-card {background-color: rgba(188, 217, 200, 0.12) !important; border: 1.5px solid rgba(35, 95, 62, 0.28) !important; box-shadow: 0 8px 32px rgba(12, 40, 25, 0.08) !important;}
+.app-card h2 {color: #041c0e !important; font-weight: 900 !important;}
+.app-card label {color: #082914 !important; font-weight: 800 !important;}
+
+/* Campos de entrada con el tono verde suave de la pantalla principal */
+.app-input, input[type="number"], input[type="text"], select, textarea {
+    font-size: 1.05rem !important; 
+    font-weight: 700 !important; 
+    padding: 0.45rem 0.75rem !important; 
+    background-color: #bcd9c8 !important; 
+    border: 2px solid #2d6b47 !important; 
+    border-radius: 0.75rem !important; 
+    color: #072213 !important; 
+    transition: all 0.15s ease-in-out; 
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.app-input:focus, input[type="number"]:focus, input[type="text"]:focus, select:focus {
+    background-color: #acd1bc !important; 
+    border-color: #15803d !important; 
+    outline: none;
+}
+
+/* Iconos de cabecera */
+.cat-btn {background: transparent !important; border: none !important; cursor: pointer; opacity: 0.75; padding: 0.4rem 0.5rem !important;}
+.cat-btn-active {color: #ffffff !important; opacity: 1 !important;}
+.cat-btn-inactive {color: #d1fae5 !important; opacity: 0.75 !important;}
+
+/* Botones y píldoras */
+.quick-vol-btn, .quick-c1-btn, .quick-v2-btn, .quick-c2-btn, .quick-goteo-btn, .quick-gbase-btn, .quick-gbuscada-btn {
+    background-color: rgba(188, 217, 200, 0.5) !important; 
+    color: #072213 !important; 
+    border: 1.5px solid #78ab8d !important; 
+    font-weight: 800 !important;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+}
+.quick-vol-active, .quick-c1-active, .quick-v2-active, .quick-c2-active, .quick-goteo-active, .quick-gbase-active, .quick-gbuscada-active {
+    background-color: #fbbf24 !important; 
+    color: #000000 !important; 
+    font-weight: 900 !important; 
+    border: 2px solid #b45309 !important;
+}
+
+input[type=range] {-webkit-appearance: none; appearance: none; width: 100%; height: 10px; border-radius: 5px; background: #96c4a9; outline: none; cursor: pointer;}
+input[type=range]::-webkit-slider-thumb {-webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #f59e0b; border: 2px solid #b45309; cursor: pointer;}
+
+.app-result-box {background-color: #316447 !important; border: 2px solid #4a8865 !important; color: #f1f8f4 !important; border-radius: 1rem;}
+.app-result-box * {color: #f1f8f4 !important;}
+.app-result-box [id*="_res_"], .app-result-box .text-amber-400 {color: #fef08a !important;}
+
+.header-divider-strip {background: linear-gradient(90deg, #183827 0%, #3a7e58 50%, #183827 100%); height: 6px;}
+
 /* ========================================================
-   STANDALONE CSS - 100% OFFLINE & IPAD / IOS COMPATIBLE
-   No external CDN required. Renders instantly in any browser.
+   MODO LABO INACTÍNICO (ESTRICTAMENTE ROJOS)
    ======================================================== */
+body.safelight-mode {background-color: #080202 !important; color: #ffa3a3 !important;}
+body.safelight-mode .app-card {background-color: rgba(20, 4, 4, 0.06) !important; border: 1.5px solid rgba(220, 38, 38, 0.35) !important; color: #ffa3a3 !important;}
+body.safelight-mode .app-card h2 {color: #ff6666 !important;}
+body.safelight-mode .app-card label {color: #ffb8b8 !important;}
+body.safelight-mode .app-header {background-color: #260707 !important; border-color: #541212 !important;}
+body.safelight-mode .cat-btn-active span {color: #ff6666 !important;}
+body.safelight-mode .cat-btn-inactive span {color: #ff7575 !important;}
 
-*, ::before, ::after {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e2e8f0;
+body.safelight-mode .app-input, body.safelight-mode input[type="number"], body.safelight-mode input[type="text"], body.safelight-mode select, body.safelight-mode textarea {
+    background-color: #881313 !important; 
+    border: 2px solid #dc2626 !important; 
+    color: #ff6666 !important; 
+    font-weight: 900 !important;
 }
 
-html {
-  line-height: 1.5;
-  -webkit-text-size-adjust: 100%;
-  tab-size: 4;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-feature-settings: normal;
+body.safelight-mode .app-result-box {background-color: #4a0d0d !important; border: 2.5px solid #dc2626 !important; color: #fca5a5 !important;}
+body.safelight-mode .app-result-box * {color: #fca5a5 !important;}
+body.safelight-mode .app-result-box [id*="_res_"] {color: #ff6666 !important;}
+body.safelight-mode input[type=range] {background: #881313 !important; border: 2px solid #dc2626 !important;}
+body.safelight-mode input[type=range]::-webkit-slider-thumb {background: #ff4d4d !important; border: 2.5px solid #ef4444 !important;}
+body.safelight-mode .quick-vol-btn, body.safelight-mode .quick-c1-btn, body.safelight-mode .quick-v2-btn, body.safelight-mode .quick-c2-btn, body.safelight-mode .quick-goteo-btn, body.safelight-mode .quick-gbase-btn, body.safelight-mode .quick-gbuscada-btn {
+    background-color: #1e0707 !important; border: 1.5px solid #571414 !important; color: #f87171 !important;
 }
-
-html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw !important;
-  position: relative;
+body.safelight-mode .quick-vol-active, body.safelight-mode .quick-c1-active, body.safelight-mode .quick-v2-active, body.safelight-mode .quick-c2-active, body.safelight-mode .quick-goteo-active, body.safelight-mode .quick-gbase-active, body.safelight-mode .quick-gbuscada-active {
+    background-color: #881313 !important; color: #ff6666 !important; border: 2px solid #ef4444 !important;
 }
-
-body {
-  margin: 0;
-  line-height: inherit;
-}
-
-hr {
-  height: 0;
-  color: inherit;
-  border-top-width: 1px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-size: inherit;
-  font-weight: inherit;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-b, strong {
-  font-weight: bolder;
-}
-
-code, kbd, samp, pre {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 1em;
-}
-
-table {
-  text-indent: 0;
-  border-color: inherit;
-  border-collapse: collapse;
-}
-
-button, input, optgroup, select, textarea {
-  font-family: inherit;
-  font-size: 100%;
-  font-weight: inherit;
-  line-height: inherit;
-  color: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-button, select {
-  text-transform: none;
-}
-
-button, [type='button'], [type='reset'], [type='submit'] {
-  -webkit-appearance: button;
-  background-color: transparent;
-  background-image: none;
-  cursor: pointer;
-}
-
-/* Visibility & Displays */
-.hidden { display: none !important; }
-.block { display: block; }
-.inline-block { display: inline-block; }
-.inline-flex { display: inline-flex; }
-.flex { display: flex; }
-.grid { display: grid; }
-
-/* Positioning */
-.static { position: static; }
-.fixed { position: fixed; }
-.absolute { position: absolute; }
-.relative { position: relative; }
-.sticky { position: sticky; }
-
-.inset-0 { inset: 0; }
-.top-0 { top: 0; }
-.top-3 { top: 0.75rem; }
-.top-\[94px\] { top: 94px; }
-.bottom-4 { bottom: 1rem; }
-.left-1\/2 { left: 50%; }
-.right-3\.5 { right: 0.875rem; }
-.-translate-x-1\/2 { transform: translateX(-50%); }
-
-.z-20 { z-index: 20; }
-.z-30 { z-index: 30; }
-.z-50 { z-index: 50; }
-
-/* Flexbox */
-.flex-1 { flex: 1 1 0%; }
-.flex-col { flex-direction: column; }
-.flex-wrap { flex-wrap: wrap; }
-.flex-shrink-0 { flex-shrink: 0; }
-.items-start { align-items: flex-start; }
-.items-center { align-items: center; }
-.items-end { align-items: flex-end; }
-.items-baseline { align-items: baseline; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.justify-end { justify-content: flex-end; }
-
-/* Spacing gaps */
-.gap-1 { gap: 0.25rem; }
-.gap-1\.5 { gap: 0.375rem; }
-.gap-2 { gap: 0.5rem; }
-.gap-2\.5 { gap: 0.625rem; }
-.gap-3 { gap: 0.75rem; }
-.gap-5 { gap: 1.25rem; }
-
-.space-x-1\.5 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.375rem; }
-.space-x-2\.5 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.625rem; }
-.space-y-1 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.25rem; }
-.space-y-1\.5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.375rem; }
-.space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
-.space-y-2\.5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.625rem; }
-.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
-.space-y-3\.5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.875rem; }
-.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
-
-/* Grid Cols */
-.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-/* Widths & Heights */
-.w-full { width: 100%; }
-.w-0\.5 { width: 0.125rem; }
-.w-2\.5 { width: 0.625rem; }
-.w-4 { width: 1rem; }
-.w-5 { width: 1.25rem; }
-.w-6 { width: 1.5rem; }
-.w-7 { width: 1.75rem; }
-.w-8 { width: 2rem; }
-.w-9 { width: 2.25rem; }
-.w-12 { width: 3rem; }
-.w-14 { width: 3.5rem; }
-.w-16 { width: 4rem; }
-.min-w-\[75px\] { min-width: 75px; }
-.max-w-md { max-width: 28rem; }
-.max-w-lg { max-width: 32rem; }
-.max-w-5xl { max-width: 64rem; }
-
-.h-full { height: 100%; }
-.min-h-full { min-height: 100%; }
-.h-1\.5 { height: 0.375rem; }
-.h-2 { height: 0.5rem; }
-.h-2\.5 { height: 0.625rem; }
-.h-3 { height: 0.75rem; }
-.h-4 { height: 1rem; }
-.h-5 { height: 1.25rem; }
-.h-6 { height: 1.5rem; }
-.h-8 { height: 2rem; }
-.h-9 { height: 2.25rem; }
-.h-24 { height: 6rem; }
-
-.max-h-64 { max-height: 16rem; }
-.max-h-80 { max-height: 20rem; }
-.max-h-96 { max-height: 24rem; }
-.max-h-\[460px\] { max-height: 460px; }
-.max-h-\[90vh\] { max-height: 90vh; }
-
-/* Margins */
-.mx-auto { margin-left: auto; margin-right: auto; }
-.ml-0\.5 { margin-left: 0.125rem; }
-.ml-1 { margin-left: 0.25rem; }
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-1\.5 { margin-bottom: 0.375rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mt-0\.5 { margin-top: 0.125rem; }
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3\.5 { margin-top: 0.875rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-6 { margin-top: 1.5rem; }
-.mt-8 { margin-top: 2rem; }
-
-/* Paddings */
-.p-0 { padding: 0; }
-.p-1 { padding: 0.25rem; }
-.p-1\.5 { padding: 0.375rem; }
-.p-2 { padding: 0.5rem; }
-.p-2\.5 { padding: 0.625rem; }
-.p-3 { padding: 0.75rem; }
-.p-3\.5 { padding: 0.875rem; }
-.p-4 { padding: 1rem; }
-.p-5 { padding: 1.25rem; }
-.px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
-.px-1\.5 { padding-left: 0.375rem; padding-right: 0.375rem; }
-.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
-.px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
-.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
-.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
-.py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
-.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
-.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-.pt-0\.5 { padding-top: 0.125rem; }
-.pt-1 { padding-top: 0.25rem; }
-.pt-1\.5 { padding-top: 0.375rem; }
-.pt-2 { padding-top: 0.5rem; }
-.pb-1 { padding-bottom: 0.25rem; }
-.pb-1\.5 { padding-bottom: 0.375rem; }
-.pb-2 { padding-bottom: 0.5rem; }
-.pb-3 { padding-bottom: 0.75rem; }
-.pb-14 { padding-bottom: 3.5rem; }
-.pr-1 { padding-right: 0.25rem; }
-
-/* Typography */
-.text-left { text-align: left; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-
-.font-sans { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-.font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-
-.text-\[10px\] { font-size: 10px; }
-.text-\[11px\] { font-size: 11px; }
-.text-xs { font-size: 0.75rem; line-height: 1rem; }
-.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-.text-base { font-size: 1rem; line-height: 1.5rem; }
-.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-.text-2xl { font-size: 1.5rem; line-height: 2rem; }
-.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.font-extrabold { font-weight: 800; }
-.font-black { font-weight: 900; }
-
-.leading-tight { line-height: 1.25; }
-.leading-snug { line-height: 1.375; }
-.leading-normal { line-height: 1.5; }
-.leading-relaxed { line-height: 1.625; }
-.tracking-tight { letter-spacing: -0.025em; }
-.whitespace-nowrap { white-space: nowrap; }
-
-/* Colors - Text */
-.text-white { color: #ffffff; }
-.text-slate-100 { color: #f1f5f9; }
-.text-slate-200 { color: #e2e8f0; }
-.text-slate-300 { color: #cbd5e1; }
-.text-slate-400 { color: #94a3b8; }
-.text-slate-500 { color: #64748b; }
-.text-slate-600 { color: #475569; }
-.text-slate-700 { color: #334155; }
-.text-slate-800 { color: #1e293b; }
-.text-slate-900 { color: #0f172a; }
-
-.text-amber-300 { color: #fcd34d; }
-.text-amber-400 { color: #fbbf24; }
-.text-amber-500 { color: #f59e0b; }
-.text-amber-600 { color: #d97706; }
-.text-amber-700 { color: #b45309; }
-.text-amber-800 { color: #92400e; }
-.text-amber-900 { color: #78350f; }
-.text-amber-950 { color: #451a03; }
-
-.text-orange-400 { color: #fb923c; }
-.text-orange-500 { color: #f97316; }
-
-.text-red-500 { color: #ef4444; }
-.text-red-800 { color: #991b1b; }
-.text-red-900 { color: #7f1d1d; }
-.text-red-950 { color: #450a0a; }
-
-.text-blue-600 { color: #2563eb; }
-.text-blue-800 { color: #1e40af; }
-.text-cyan-800 { color: #155e75; }
-.text-emerald-600 { color: #059669; }
-.text-emerald-800 { color: #065f46; }
-.text-indigo-800 { color: #3730a3; }
-.text-purple-800 { color: #6b21a8; }
-.text-violet-800 { color: #5b21b6; }
-
-/* Colors - Backgrounds */
-.bg-white { background-color: #ffffff; }
-.bg-transparent { background-color: transparent; }
-.bg-slate-50 { background-color: #f8fafc; }
-.bg-slate-100 { background-color: #f1f5f9; }
-.bg-slate-200 { background-color: #e2e8f0; }
-.bg-slate-700 { background-color: #334155; }
-.bg-slate-800 { background-color: #1e293b; }
-.bg-slate-800\/60 { background-color: rgba(30, 41, 59, 0.6); }
-.bg-slate-800\/80 { background-color: rgba(30, 41, 59, 0.8); }
-.bg-slate-900 { background-color: #0f172a; }
-
-.bg-amber-50 { background-color: #fffbeb; }
-.bg-amber-50\/60 { background-color: rgba(255, 251, 235, 0.6); }
-.bg-amber-50\/70 { background-color: rgba(255, 251, 235, 0.7); }
-.bg-amber-100 { background-color: #fef3c7; }
-.bg-amber-100\/80 { background-color: rgba(254, 243, 199, 0.8); }
-.bg-amber-500 { background-color: #f59e0b; }
-.bg-amber-500\/10 { background-color: rgba(245, 158, 11, 0.1); }
-.bg-amber-600 { background-color: #d97706; }
-
-.bg-blue-50 { background-color: #eff6ff; }
-.bg-blue-600 { background-color: #2563eb; }
-.bg-cyan-50 { background-color: #ecfeff; }
-.bg-emerald-50 { background-color: #ecfdf5; }
-.bg-emerald-100 { background-color: #d1fae5; }
-.bg-emerald-600 { background-color: #059669; }
-.bg-indigo-50 { background-color: #eef2ff; }
-.bg-purple-50 { background-color: #faf5ff; }
-.bg-violet-50 { background-color: #f5f3ff; }
-.bg-orange-500 { background-color: #f97316; }
-.bg-rose-500\/10 { background-color: rgba(244, 63, 94, 0.1); }
-.bg-rose-600 { background-color: #e11d48; }
-.bg-red-50 { background-color: #fef2f2; }
-.bg-red-50\/80 { background-color: rgba(254, 242, 242, 0.8); }
-.bg-black\/60 { background-color: rgba(0, 0, 0, 0.6); }
-
-/* Borders */
-.border { border-width: 1px; }
-.border-b { border-bottom-width: 1px; }
-.border-t { border-top-width: 1px; }
-.border-dashed { border-style: dashed; }
-
-.border-slate-100 { border-color: #f1f5f9; }
-.border-slate-200 { border-color: #e2e8f0; }
-.border-slate-300 { border-color: #cbd5e1; }
-.border-slate-700 { border-color: #334155; }
-.border-slate-700\/60 { border-color: rgba(51, 65, 85, 0.6); }
-.border-slate-800 { border-color: #1e293b; }
-.border-slate-900 { border-color: #0f172a; }
-
-.border-amber-200 { border-color: #fde68a; }
-.border-amber-200\/50 { border-color: rgba(253, 230, 138, 0.5); }
-.border-amber-200\/80 { border-color: rgba(253, 230, 138, 0.8); }
-.border-amber-300\/60 { border-color: rgba(252, 211, 77, 0.6); }
-.border-amber-400 { border-color: #fbbf24; }
-.border-amber-500 { border-color: #f59e0b; }
-.border-amber-500\/30 { border-color: rgba(245, 158, 11, 0.3); }
-.border-amber-500\/40 { border-color: rgba(245, 158, 11, 0.4); }
-
-.border-blue-200 { border-color: #bfdbfe; }
-.border-cyan-200 { border-color: #a5f3fc; }
-.border-emerald-200 { border-color: #a7f3d0; }
-.border-emerald-500\/40 { border-color: rgba(16, 185, 129, 0.4); }
-.border-rose-500\/40 { border-color: rgba(244, 63, 94, 0.4); }
-.border-indigo-200 { border-color: #c7d2fe; }
-.border-purple-200 { border-color: #e9d5ff; }
-.border-violet-200 { border-color: #ddd6fe; }
-.border-red-200 { border-color: #fecaca; }
-
-.divide-y > :not([hidden]) ~ :not([hidden]) {
-  border-top-width: 1px;
-}
-.divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
-  border-color: #f1f5f9;
-}
-
-/* Border Radius */
-.rounded { border-radius: 0.25rem; }
-.rounded-md { border-radius: 0.375rem; }
-.rounded-lg { border-radius: 0.5rem; }
-.rounded-xl { border-radius: 0.75rem; }
-.rounded-2xl { border-radius: 1rem; }
-.rounded-full { border-radius: 9999px; }
-.rounded-t-3xl { border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem; }
-
-/* Shadows */
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
-.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
-.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-.shadow-inner { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); }
-
-/* Overflow & Transitions */
-.overflow-x-auto { overflow-x: auto; }
-.overflow-y-auto { overflow-y: auto; }
-.cursor-pointer { cursor: pointer; }
-.select-none { -webkit-user-select: none; user-select: none; }
-.pointer-events-none { pointer-events: none; }
-.opacity-0 { opacity: 0; }
-.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-.transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-.transition-opacity { transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-
-/* Responsive SM (>= 640px) */
-@media (min-width: 640px) {
-  .sm\:inline { display: inline; }
-  .sm\:items-center { align-items: center; }
-  .sm\:p-4 { padding: 1rem; }
-  .sm\:p-6 { padding: 1.5rem; }
-  .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .sm\:rounded-2xl { border-radius: 1rem; }
-  .sm\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-  .sm\:text-base { font-size: 1rem; line-height: 1.5rem; }
-  .sm\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-  .sm\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-  .sm\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
-  .sm\:text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-  .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-}
-
-/* Responsive LG (>= 1024px) */
-@media (min-width: 1024px) {
-  .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lg\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .lg\:col-span-4 { grid-column: span 4 / span 4; }
-  .lg\:col-span-5 { grid-column: span 5 / span 5; }
-  .lg\:col-span-7 { grid-column: span 7 / span 7; }
-  .lg\:col-span-8 { grid-column: span 8 / span 8; }
-}
-
-/* Hover & Active States */
-.active\:scale-95:active { transform: scale(0.95); }
-.active\:scale-98:active { transform: scale(0.98); }
-
-    html {
-      font-size: 16px;
-      -webkit-text-size-adjust: 100%;
-    }
-    html.text-size-large {
-      font-size: 18px;
-    }
-    html.text-size-xl {
-      font-size: 20px;
-    }
-
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none; 
-      margin: 0; 
-    }
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
-
-    /* Tarjetas y Fondo General en Modo Día (Verde suave que reduce fatiga) */
-    body {
-      background-color: #bcd9c8 !important; /* Verde suave de laboratorio analógico, más suave que la cabecera */
-      color: #0f291a;
-    }
-    /* Tarjetas y Capa Intermedia en Modo Día: 20% más transparente (88% translúcido) */
-    .app-card {
-      background-color: rgba(188, 217, 200, 0.12) !important; /* 88% translúcido para revelar plenamente el fondo y cristalería */
-      backdrop-filter: blur(0.5px);
-      -webkit-backdrop-filter: blur(0.5px);
-      border: 1.5px solid rgba(35, 95, 62, 0.28) !important;
-      box-shadow: 0 8px 32px rgba(12, 40, 25, 0.08) !important;
-    }
-
-    /* Textos nítidos y de alto contraste dentro de las tarjetas translúcidas */
-    .app-card h2 {
-      color: #041c0e !important;
-      font-weight: 900 !important;
-    }
-    .app-card label {
-      color: #082914 !important;
-      font-weight: 800 !important;
-    }
-    .app-card p {
-      color: #0f3820 !important;
-    }
-
-    /* Sub-contenedores y cajas inmediatamente detrás de los controles en Modo Día */
-    .app-card [class*="bg-slate-50"],
-    .app-card [class*="bg-slate-100"] {
-      background-color: rgba(255, 255, 255, 0.10) !important;
-      border-color: rgba(35, 95, 62, 0.20) !important;
-    }
-    .app-card [class*="bg-amber-50"] {
-      background-color: rgba(254, 243, 199, 0.18) !important;
-      border-color: rgba(245, 158, 11, 0.25) !important;
-    }
-
-    /* Inputs numéricos con diseño táctil diferenciado */
-    .app-input,
-    input[type="number"],
-    input[type="text"],
-    select,
-    textarea {
-      font-size: 1.15rem !important;
-      font-weight: 700 !important;
-      padding: 0.5rem 0.8rem !important;
-      background-color: #fffef0 !important; /* Marfil suave claramente diferenciado */
-      border: 2px solid #2d6b47 !important; /* Borde verde bosque bien definido */
-      border-radius: 0.75rem !important;
-      color: #0f2e1e !important;
-      transition: all 0.15s ease-in-out;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-    .app-input:focus,
-    input[type="number"]:focus,
-    input[type="text"]:focus,
-    select:focus {
-      background-color: #ffffff !important;
-      border-color: #15803d !important;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25) !important;
-      outline: none;
-    }
-
-    /* Menú Vertical Desplegable de Subcategorías */
-    #verticalSubnavPanel {
-      animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .vert-sub-btn {
-      cursor: pointer;
-      user-select: none;
-    }
-    body.safelight-mode .vert-item-active {
-      background-color: #881313 !important;
-      border: 2px solid #dc2626 !important;
-      color: #fed7aa !important;
-      box-shadow: 0 0 12px rgba(220, 38, 38, 0.45) !important;
-    }
-    body.safelight-mode .vert-item-inactive {
-      background-color: #1f0707 !important;
-      border: 1.5px solid #4a1010 !important;
-      color: #fca5a5 !important;
-    }
-    body.safelight-mode .vert-item-inactive:hover {
-      background-color: #2e0c0c !important;
-      border-color: #991b1b !important;
-      color: #fed7aa !important;
-    }
-
-    /* ICONOS DE CABECERA SIN RECUADRO (BASTA CON LOS ICONOS) */
-    .cat-btn {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
-      opacity: 0.75;
-      padding: 0.4rem 0.5rem !important;
-    }
-    .cat-btn:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-    .cat-btn-active {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: #ffffff !important;
-      opacity: 1 !important;
-    }
-    .cat-btn-inactive {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: #d1fae5 !important;
-      opacity: 0.75 !important;
-    }
-    .cat-btn-inactive:hover {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: #ffffff !important;
-      opacity: 1 !important;
-    }
-
-    /* Sub-navegación */
-    .app-subnav {
-      background-color: #f2f7f4 !important;
-      border-color: #cfded4 !important;
-    }
-
-    /* Pestañas Segmentadas Stouffer en Modo Día */
-    .stouffer-tab-btn {
-      cursor: pointer;
-    }
-    .stouffer-tab-active {
-      background-color: #2e6847 !important;
-      color: #ffffff !important;
-      border: 2.5px solid #4a8c65 !important;
-      box-shadow: 0 4px 14px rgba(46, 104, 71, 0.3) !important;
-    }
-    .stouffer-tab-inactive {
-      background-color: #eef5f0 !important;
-      color: #3b5f4c !important;
-      border: 2px solid #c2d8cb !important;
-    }
-    .stouffer-tab-inactive:hover {
-      background-color: #e2eee6 !important;
-      color: #173827 !important;
-    }
-
-    /* Botones de Selección Rápida en Modo Día */
-    .quick-vol-btn,
-    .quick-c1-btn,
-    .quick-v2-btn,
-    .quick-c2-btn,
-    .quick-goteo-btn,
-    .quick-focal-btn,
-    .quick-mag-btn {
-      background-color: #eaf3ed;
-      border: 1.5px solid #bdd5c5;
-      color: #1b4931;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.75rem;
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
-    }
-    .quick-vol-btn:hover,
-    .quick-c1-btn:hover,
-    .quick-v2-btn:hover,
-    .quick-c2-btn:hover,
-    .quick-goteo-btn:hover,
-    .quick-focal-btn:hover,
-    .quick-mag-btn:hover {
-      background-color: #d8eadf;
-    }
-    .quick-vol-active,
-    .quick-c1-active,
-    .quick-v2-active,
-    .quick-c2-active,
-    .quick-goteo-active,
-    .quick-focal-active,
-    .quick-mag-active {
-      background-color: #236845 !important;
-      color: #ffffff !important;
-      border-color: #3ea672 !important;
-      box-shadow: 0 2px 8px rgba(35, 104, 69, 0.35) !important;
-    }
-
-    /* Deslizamiento de subcategorías en una misma línea */
-    .sub-tab-btn {
-      flex-shrink: 0 !important;
-      white-space: nowrap !important;
-    }
-    .subnav-scroll {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      overflow-y: hidden !important;
-      scrollbar-width: thin !important;
-      scrollbar-color: #881313 #dce8e0 !important;
-      padding-bottom: 6px !important;
-      -webkit-overflow-scrolling: touch !important;
-    }
-    .subnav-scroll::-webkit-scrollbar {
-      height: 6px !important;
-    }
-    .subnav-scroll::-webkit-scrollbar-track {
-      background: #dce8e0 !important;
-      border-radius: 9999px !important;
-    }
-    /* Barras de desplazamiento en Modo Claro: Rojo oscuro */
-    .subnav-scroll::-webkit-scrollbar-thumb,
-    ::-webkit-scrollbar-thumb {
-      background: #881313 !important;
-      border-radius: 9999px !important;
-    }
-    .subnav-scroll::-webkit-scrollbar-thumb:hover,
-    ::-webkit-scrollbar-thumb:hover {
-      background: #6b0c0c !important;
-    }
-
-    body.safelight-mode .subnav-scroll {
-      scrollbar-color: #991b1b #240808 !important;
-    }
-    body.safelight-mode .subnav-scroll::-webkit-scrollbar-track {
-      background: #240808 !important;
-    }
-    body.safelight-mode .subnav-scroll::-webkit-scrollbar-thumb {
-      background: #991b1b !important;
-    }
-
-    /* BARRAS DESLIZADORAS EN MODO CLARO: GUÍA / TRACK EN ROJO OSCURO Y BOTÓN CIRCULAR CENTRADO */
-    input[type=range] {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 10px;
-      border-radius: 5px;
-      background: #881313 !important;
-      outline: none;
-      transition: background 0.2s;
-      cursor: pointer;
-    }
-    input[type=range]::-webkit-slider-runnable-track {
-      height: 10px;
-      border-radius: 5px;
-      background: #881313 !important;
-      border: 1px solid #570b0b;
-    }
-    input[type=range]::-moz-range-track {
-      height: 10px;
-      border-radius: 5px;
-      background: #881313 !important;
-      border: 1px solid #570b0b;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      margin-top: -9px; /* Centrado exacto sobre la barra */
-      background: radial-gradient(circle at center, #f59e0b 0%, #f59e0b 32%, #27543d 34%, #27543d 100%) !important;
-      border: 2.5px solid #f59e0b !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
-      cursor: pointer;
-      position: relative;
-      z-index: 10;
-      transition: transform 0.1s ease;
-    }
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.1);
-    }
-    input[type=range]::-moz-range-thumb {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, #f59e0b 0%, #f59e0b 32%, #27543d 34%, #27543d 100%) !important;
-      border: 2.5px solid #f59e0b !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
-      cursor: pointer;
-    }
-
-    /* SECCIÓN INFERIOR DE LOG Y CHAT: MÁS COMPACTA, VERDES OPACOS COMO CABECERA Y CAMPOS VERDE CLARO */
-    body:not(.safelight-mode) #authFooterSection {
-      background-color: #234d37 !important;
-      border-color: #183827 !important;
-    }
-    body:not(.safelight-mode) #authFooterSection .footer-subbox {
-      background-color: #1c3f2d !important;
-      border: 1.5px solid #32694c !important;
-    }
-    body:not(.safelight-mode) #authFooterSection input.app-input {
-      background-color: #dceee3 !important;
-      border: 1.5px solid #3c7d5b !important;
-      color: #082615 !important;
-      font-size: 0.8rem !important;
-      padding: 0.3rem 0.6rem !important;
-      border-radius: 0.5rem !important;
-    }
-    body:not(.safelight-mode) #authFooterSection input.app-input::placeholder {
-      color: #3b6e52 !important;
-      opacity: 0.85;
-    }
-    body.safelight-mode #authFooterSection .footer-subbox {
-      background-color: #1a0505 !important;
-      border: 1.5px solid #571212 !important;
-    }
-
-    /* Estilos mejorados para optgroup y selector de fórmulas */
-    optgroup {
-      font-weight: 800;
-      color: #1e4732;
-      background-color: #f1f5f9;
-      padding: 4px 0;
-      font-size: 0.85rem;
-    }
-    body.safelight-mode optgroup {
-      color: #f87171 !important;
-      background-color: #1a0808 !important;
-    }
-    option {
-      font-weight: 600;
-      color: #0f172a;
-      background-color: #ffffff;
-      padding: 5px 8px;
-    }
-    body.safelight-mode option {
-      color: #fed7aa !important;
-      background-color: #0f0505 !important;
-    }
-
-    /* SILUETAS DE CRISTALERÍA EN CABECERA */
-    .header-watermark svg {
-      color: #6ee7b7 !important;
-      stroke: #6ee7b7 !important;
-      opacity: 0.34 !important;
-      stroke-width: 2.2 !important;
-    }
-
-    /* Ancho máximo uniforme de 4 dígitos centrados para campos numéricos */
-    .w-20 { width: 5.2rem !important; max-width: 5.2rem !important; }
-    .w-24 { width: 5.8rem !important; max-width: 5.8rem !important; }
-
-    /* RECUADROS DE RESULTADOS EN MODO DÍA: VERDE MEDIO TENUE */
-    .app-result-box {
-      background-color: #316447 !important;
-      border: 2px solid #4a8865 !important;
-      color: #f1f8f4 !important;
-      border-radius: 1rem;
-      box-shadow: 0 4px 14px rgba(45, 95, 68, 0.15) !important;
-    }
-    .app-result-box * {
-      color: #f1f8f4 !important;
-    }
-    .app-result-box [id*="_res_"],
-    .app-result-box [class*="text-amber-"],
-    .app-result-box [class*="text-orange-"] {
-      color: #fef08a !important;
-    }
-    .app-result-box .border-slate-800 {
-      border-color: #427c5b !important;
-    }
-    .app-result-box .bg-slate-800\/80,
-    .app-result-box .bg-slate-800\/90 {
-      background-color: #26543b !important;
-      border-color: #3e7354 !important;
-    }
-
-    /* ENCABEZADO EN MODO CLARO: TONO VERDE MEDIO SUAVE */
-    .app-header {
-      background-color: #27543d !important;
-      border-color: #3b7355 !important;
-    }
-
-    /* ========================================================
-       MODO LABO INACTÍNICO (ESTRICTAMENTE ROJOS Y NEGROS EN DISTINTOS MATICES)
-       ======================================================== */
-    body.safelight-mode {
-      background-color: #080202 !important;
-      color: #f87171 !important;
-    }
-    /* Tarjetas y Capa Intermedia en Modo Labo: 94% translúcido */
-    body.safelight-mode .app-card,
-    body.safelight-mode .app-card.bg-white,
-    body.safelight-mode div.app-card {
-      background-color: rgba(20, 4, 4, 0.06) !important;
-      backdrop-filter: blur(0.5px) !important;
-      -webkit-backdrop-filter: blur(0.5px) !important;
-      border: 1.5px solid rgba(220, 38, 38, 0.35) !important;
-      color: #f87171 !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.95), 0 0 16px rgba(220, 38, 38, 0.10) !important;
-    }
-
-    body.safelight-mode .app-card h2,
-    body.safelight-mode .app-card h3 {
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-      text-shadow: 0 0 8px rgba(255, 77, 77, 0.4) !important;
-    }
-    body.safelight-mode .app-card label {
-      color: #fca5a5 !important;
-      font-weight: 800 !important;
-    }
-    body.safelight-mode .app-card p {
-      color: #f87171 !important;
-    }
-
-    body.safelight-mode .app-card [class*="bg-slate-50"],
-    body.safelight-mode .app-card [class*="bg-slate-100"],
-    body.safelight-mode .app-card [class*="bg-amber-50"],
-    body.safelight-mode .app-card .bg-white {
-      background-color: rgba(35, 8, 8, 0.08) !important;
-      border-color: rgba(185, 28, 28, 0.25) !important;
-    }
-
-    body.safelight-mode .app-header {
-      background-color: #260707 !important;
-      border-color: #541212 !important;
-    }
-
-    body.safelight-mode .header-watermark svg {
-      color: #dc2626 !important;
-      stroke: #dc2626 !important;
-      opacity: 0.45 !important;
-      stroke-width: 2.2 !important;
-    }
-
-    body.safelight-mode .cat-btn-active {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: #ff6666 !important;
-      opacity: 1 !important;
-      text-shadow: 0 0 12px rgba(255, 77, 77, 0.65) !important;
-    }
-    body.safelight-mode .cat-btn-inactive {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: #a83232 !important;
-      opacity: 0.65 !important;
-    }
-    body.safelight-mode .cat-btn-inactive:hover {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: #f87171 !important;
-      opacity: 1 !important;
-    }
-
-    body.safelight-mode .vert-item-active {
-      background-color: #881313 !important;
-      border: 2px solid #ef4444 !important;
-      color: #ff6666 !important;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5) !important;
-    }
-    body.safelight-mode .vert-item-active * {
-      color: #ff6666 !important;
-    }
-    body.safelight-mode .vert-item-inactive {
-      background-color: #1a0505 !important;
-      border: 1.5px solid #4a1010 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode .vert-item-inactive:hover {
-      background-color: #2e0c0c !important;
-      border-color: #991b1b !important;
-      color: #fca5a5 !important;
-    }
-
-    body.safelight-mode .quick-gbase-btn,
-    body.safelight-mode .quick-gbuscada-btn {
-      background-color: #1e0707 !important;
-      border: 1.5px solid #571414 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode .quick-gbase-btn:hover,
-    body.safelight-mode .quick-gbuscada-btn:hover {
-      background-color: #330a0a !important;
-      color: #fca5a5 !important;
-      border-color: #991b1b !important;
-    }
-    body.safelight-mode .quick-gbase-active,
-    body.safelight-mode .quick-gbuscada-active {
-      background-color: #881313 !important;
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-      border: 2px solid #ef4444 !important;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5) !important;
-    }
-
-    body.safelight-mode .quick-vol-btn,
-    body.safelight-mode .quick-c1-btn,
-    body.safelight-mode .quick-v2-btn,
-    body.safelight-mode .quick-c2-btn,
-    body.safelight-mode .quick-goteo-btn,
-    body.safelight-mode .quick-focal-btn,
-    body.safelight-mode .quick-mag-btn {
-      background-color: #1e0707 !important;
-      border: 1.5px solid #571414 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode .quick-vol-btn:hover,
-    body.safelight-mode .quick-c1-btn:hover,
-    body.safelight-mode .quick-v2-btn:hover,
-    body.safelight-mode .quick-c2-btn:hover,
-    body.safelight-mode .quick-goteo-btn:hover {
-      background-color: #330a0a !important;
-      color: #fca5a5 !important;
-      border-color: #991b1b !important;
-    }
-    body.safelight-mode .quick-vol-active,
-    body.safelight-mode .quick-c1-active,
-    body.safelight-mode .quick-v2-active,
-    body.safelight-mode .quick-c2-active,
-    body.safelight-mode .quick-goteo-active,
-    body.safelight-mode .quick-focal-active,
-    body.safelight-mode .quick-mag-active {
-      background-color: #881313 !important;
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-      border: 2px solid #ef4444 !important;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5) !important;
-    }
-
-    body.safelight-mode .app-input,
-    body.safelight-mode input[type="number"],
-    body.safelight-mode input[type="text"],
-    body.safelight-mode select,
-    body.safelight-mode textarea {
-      background-color: #881313 !important;
-      border: 2px solid #dc2626 !important;
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-      box-shadow: 0 0 10px rgba(220, 38, 38, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
-      text-shadow: 0 0 6px rgba(255, 77, 77, 0.4) !important;
-    }
-    body.safelight-mode .app-input:focus,
-    body.safelight-mode input:focus,
-    body.safelight-mode select:focus {
-      background-color: #991b1b !important;
-      border-color: #ef4444 !important;
-      color: #ff6b6b !important;
-      box-shadow: 0 0 16px rgba(239, 68, 68, 0.7), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
-      outline: none !important;
-    }
-    body.safelight-mode optgroup,
-    body.safelight-mode option {
-      background-color: #4a0d0d !important;
-      color: #f87171 !important;
-    }
-
-    body.safelight-mode input[type=range] {
-      -webkit-appearance: none !important;
-      appearance: none !important;
-      background: #881313 !important;
-      border: 2px solid #dc2626 !important;
-      height: 12px !important;
-      border-radius: 6px !important;
-      box-shadow: 0 0 10px rgba(220, 38, 38, 0.45) !important;
-      outline: none !important;
-    }
-    body.safelight-mode input[type=range]::-webkit-slider-runnable-track {
-      background: #881313 !important;
-      border: 2px solid #dc2626 !important;
-      height: 12px !important;
-      border-radius: 6px !important;
-    }
-    body.safelight-mode input[type=range]::-moz-range-track {
-      background: #881313 !important;
-      border: 2px solid #dc2626 !important;
-      height: 12px !important;
-      border-radius: 6px !important;
-    }
-
-    body.safelight-mode input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none !important;
-      appearance: none !important;
-      width: 28px !important;
-      height: 28px !important;
-      border-radius: 50% !important;
-      margin-top: -10px !important;
-      background: radial-gradient(circle at center, #ff4d4d 0%, #ff4d4d 32%, #881313 34%, #881313 100%) !important;
-      border: 2.5px solid #ef4444 !important;
-      box-shadow: 0 0 14px rgba(239, 68, 68, 0.85), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
-      cursor: pointer !important;
-    }
-    body.safelight-mode input[type=range]::-moz-range-thumb {
-      width: 28px !important;
-      height: 28px !important;
-      border-radius: 50% !important;
-      background: radial-gradient(circle at center, #ff4d4d 0%, #ff4d4d 32%, #881313 34%, #881313 100%) !important;
-      border: 2.5px solid #ef4444 !important;
-      box-shadow: 0 0 14px rgba(239, 68, 68, 0.85), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
-      cursor: pointer !important;
-    }
-
-    body.safelight-mode .app-result-box {
-      background-color: #4a0d0d !important;
-      border: 2.5px solid #dc2626 !important;
-      color: #fca5a5 !important;
-      box-shadow: 0 0 24px rgba(220, 38, 38, 0.45) !important;
-    }
-    body.safelight-mode .app-result-box * {
-      color: #fca5a5 !important;
-    }
-    body.safelight-mode .app-result-box span.font-bold,
-    body.safelight-mode .app-result-box strong,
-    body.safelight-mode .app-result-box [class*="text-amber-"],
-    body.safelight-mode .app-result-box [class*="text-orange-"] {
-      color: #ef4444 !important;
-    }
-    body.safelight-mode .app-result-box [id*="_res_"],
-    body.safelight-mode .app-result-box .text-lab-highlight {
-      color: #ff6666 !important;
-      text-shadow: 0 0 12px rgba(255, 77, 77, 0.65) !important;
-      font-weight: 900 !important;
-    }
-    body.safelight-mode .app-result-box .border-slate-800 {
-      border-color: #7f1d1d !important;
-    }
-    body.safelight-mode .app-result-box .bg-slate-800\/80,
-    body.safelight-mode .app-result-box .bg-slate-800\/90 {
-      background-color: #330808 !important;
-      border-color: #5c1212 !important;
-    }
-
-    body.safelight-mode #goteo_quick_card {
-      background-color: #4a0d0d !important;
-      border: 2px solid #dc2626 !important;
-      color: #fca5a5 !important;
-    }
-    body.safelight-mode #goteo_quick_card * {
-      color: #fca5a5 !important;
-    }
-    body.safelight-mode #goteo_quick_card strong,
-    body.safelight-mode #goteo_quick_card span {
-      color: #ef4444 !important;
-    }
-    body.safelight-mode #tira_cards_container > div {
-      background-color: #1a0505 !important;
-      border-color: #571414 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode #tira_cards_container > div * {
-      color: #f87171 !important;
-    }
-    body.safelight-mode #tira_cards_container > div span.font-extrabold {
-      color: #ff6666 !important;
-    }
-
-    body.safelight-mode .stouffer-tab-inactive {
-      background-color: #1a0606 !important;
-      border: 2px solid #4a1010 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode .stouffer-tab-active {
-      background-color: #881313 !important;
-      border: 2.5px solid #ef4444 !important;
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5) !important;
-    }
-    body.safelight-mode .stouffer-tab-active * {
-      color: #ff6666 !important;
-    }
-    body.safelight-mode .stouffer-ruler-num {
-      background-color: #240909 !important;
-      border-color: #5c1616 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode .stouffer-ruler-active {
-      background-color: #881313 !important;
-      border-color: #ef4444 !important;
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-    }
-    body.safelight-mode [id="stouffer_ticks_ruler"] span {
-      background-color: #240909 !important;
-      color: #f87171 !important;
-      border-color: #5c1616 !important;
-    }
-    body.safelight-mode [id="stouffer_ticks_ruler"] span.stouffer-ruler-active {
-      background-color: #881313 !important;
-      color: #ff6666 !important;
-      font-weight: 900 !important;
-      border-color: #ef4444 !important;
-    }
-
-    body.safelight-mode :not(.app-card).bg-white,
-    body.safelight-mode .bg-white\/70,
-    body.safelight-mode .bg-white\/80,
-    body.safelight-mode .bg-white\/90 {
-      background-color: #140505 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode [class*="bg-slate-50"],
-    body.safelight-mode [class*="bg-slate-100"] {
-      background-color: #1a0606 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode [class*="bg-slate-200"] {
-      background-color: #2a0a0a !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode [class*="bg-amber-50"],
-    body.safelight-mode [class*="bg-amber-100"] {
-      background-color: #200808 !important;
-      color: #f87171 !important;
-    }
-    body.safelight-mode [class*="border-slate-"] {
-      border-color: #3d0d0d !important;
-    }
-    body.safelight-mode [class*="border-amber-"] {
-      border-color: #631515 !important;
-    }
-    body.safelight-mode .text-white,
-    body.safelight-mode [class*="text-slate-100"],
-    body.safelight-mode [class*="text-slate-200"],
-    body.safelight-mode [class*="text-slate-300"] {
-      color: #f87171 !important;
-    }
-
-    body.safelight-mode #stock_res_ml,
-    body.safelight-mode #stouffer_res_t,
-    body.safelight-mode #stouffer_res_pic,
-    body.safelight-mode #amp_res_seg,
-    body.safelight-mode #fuelle_res_t,
-    body.safelight-mode #digi_res_ppp,
-    body.safelight-mode #stitch_res_mp,
-    body.safelight-mode #fstop_quick_val,
-    body.safelight-mode #fuelle_res_dist,
-    body.safelight-mode .text-lab-highlight,
-    body.safelight-mode [id*="_corto"],
-    body.safelight-mode [id*="_largo"] {
-      color: #ff6666 !important;
-      text-shadow: 0 0 12px rgba(255, 77, 77, 0.6) !important;
-      font-weight: 900 !important;
-    }
-
-    body.safelight-mode h1,
-    body.safelight-mode h2,
-    body.safelight-mode h3,
-    body.safelight-mode h4,
-    body.safelight-mode strong {
-      color: #ef4444 !important;
-      text-shadow: 0 0 6px rgba(239, 68, 68, 0.3) !important;
-    }
-    body.safelight-mode label {
-      color: #fca5a5 !important;
-      font-weight: 700 !important;
-    }
-    body.safelight-mode p,
-    body.safelight-mode span:not(.font-black):not(.font-bold) {
-      color: #f87171 !important;
-    }
-    body.safelight-mode .text-slate-400,
-    body.safelight-mode .text-slate-500,
-    body.safelight-mode .text-slate-600 {
-      color: #a83232 !important;
-    }
-
-    body.safelight-mode #safelightToggle {
-      background-color: #4a0d0d !important;
-      border-color: #ef4444 !important;
-      color: #fca5a5 !important;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5) !important;
-    }
-    
-    .page-watermark {
-      color: #0b381e;
-      opacity: 0.25;
-      transition: opacity 0.3s ease, color 0.3s ease;
-    }
-    body.safelight-mode .page-watermark {
-      color: #ef4444 !important;
-      opacity: 0.35 !important;
-    }
-    body.safelight-mode .page-watermark svg,
-    body.safelight-mode .page-watermark svg * {
-      stroke: #ef4444 !important;
-      color: #ef4444 !important;
-    }
-    body.safelight-mode .header-watermark svg,
-    body.safelight-mode .header-watermark svg * {
-      stroke: #ef4444 !important;
-      color: #ef4444 !important;
-    }
-
-    body.safelight-mode [class*="bg-emerald-"],
-    body.safelight-mode [class*="bg-blue-"],
-    body.safelight-mode [class*="bg-purple-"],
-    body.safelight-mode [class*="bg-violet-"],
-    body.safelight-mode [class*="bg-cyan-"],
-    body.safelight-mode [class*="bg-indigo-"],
-    body.safelight-mode [class*="bg-teal-"],
-    body.safelight-mode [class*="bg-green-"],
-    body.safelight-mode [class*="bg-amber-"],
-    body.safelight-mode [class*="bg-yellow-"],
-    body.safelight-mode [class*="bg-orange-"],
-    body.safelight-mode [class*="bg-rose-"],
-    body.safelight-mode [class*="bg-slate-"],
-    body.safelight-mode [class*="bg-gray-"],
-    body.safelight-mode [class*="bg-zinc-"],
-    body.safelight-mode [class*="bg-stone-"],
-    body.safelight-mode [class*="bg-white"] {
-      background-color: #1a0505 !important;
-      color: #f87171 !important;
-      border-color: #571212 !important;
-    }
-
-    body.safelight-mode span.font-mono,
-    body.safelight-mode span[class*="rounded-lg"],
-    body.safelight-mode span[class*="rounded-xl"],
-    body.safelight-mode span[class*="rounded-full"] {
-      background-color: #2b0808 !important;
-      color: #ef4444 !important;
-      border-color: #7f1d1d !important;
-    }
-
-    body.safelight-mode [class*="text-emerald-"],
-    body.safelight-mode [class*="text-blue-"],
-    body.safelight-mode [class*="text-purple-"],
-    body.safelight-mode [class*="text-violet-"],
-    body.safelight-mode [class*="text-cyan-"],
-    body.safelight-mode [class*="text-amber-"],
-    body.safelight-mode [class*="text-yellow-"],
-    body.safelight-mode [class*="text-orange-"],
-    body.safelight-mode [class*="text-slate-"],
-    body.safelight-mode [class*="text-gray-"] {
-      color: #f87171 !important;
-    }
-
-    .header-divider-strip {
-      background: linear-gradient(90deg, #183827 0%, #3a7e58 50%, #183827 100%);
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-      border-bottom: 2px solid rgba(15, 45, 30, 0.35);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-      height: 6px;
-    }
-    @media (min-width: 640px) {
-      .header-divider-strip {
-        height: 8px;
-      }
-    }
-    body.safelight-mode .header-divider-strip {
-      background: linear-gradient(90deg, #2b0606 0%, #881313 50%, #2b0606 100%) !important;
-      border-top: 1px solid rgba(220, 38, 38, 0.45) !important;
-      border-bottom: 2px solid #000000 !important;
-      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35) !important;
-    }
-
-    body:not(.safelight-mode) .app-header,
-    body:not(.safelight-mode) .app-header h1,
-    body:not(.safelight-mode) .app-header p,
-    body:not(.safelight-mode) .app-header span,
-    body:not(.safelight-mode) .app-header button,
-    body:not(.safelight-mode) .cat-btn,
-    body:not(.safelight-mode) .cat-btn span,
-    body:not(.safelight-mode) .cat-btn-active,
-    body:not(.safelight-mode) .cat-btn-active span,
-    body:not(.safelight-mode) .cat-btn-inactive,
-    body:not(.safelight-mode) .cat-btn-inactive span {
-      color: #ffffff !important;
-      opacity: 1 !important;
-    }
-
-    #verticalSubnavPanel .app-card {
-      background-color: #153c26 !important;
-      border: 2px solid #2f7a4e !important;
-    }
-    #verticalSubnavPanel .vert-sub-btn {
-      background-color: #1b492f !important;
-      border: 1px solid #2d734a !important;
-      color: #ffffff !important;
-    }
-    #verticalSubnavPanel .vert-sub-btn * {
-      color: #ffffff !important;
-    }
-    #verticalSubnavPanel .vert-sub-btn.vert-item-active {
-      background-color: #276b43 !important;
-      border: 2px solid #52b788 !important;
-      box-shadow: 0 0 10px rgba(82, 183, 136, 0.4) !important;
-    }
-
-    .quick-vol-btn,
-    .quick-c1-btn,
-    .quick-v2-btn,
-    .quick-c2-btn,
-    .quick-goteo-btn,
-    .quick-gbase-btn,
-    .quick-gbuscada-btn,
-    .quick-focal-btn,
-    .quick-mag-btn {
-      background-color: rgba(255, 255, 255, 0.75) !important;
-      color: #072213 !important;
-      border: 1.5px solid #78ab8d !important;
-      font-weight: 800 !important;
-    }
-    .quick-vol-btn:hover,
-    .quick-c1-btn:hover,
-    .quick-v2-btn:hover,
-    .quick-c2-btn:hover,
-    .quick-goteo-btn:hover,
-    .quick-gbase-btn:hover,
-    .quick-gbuscada-btn:hover {
-      background-color: #ffffff !important;
-      color: #000000 !important;
-      border-color: #3b875b !important;
-    }
-    .quick-vol-active,
-    .quick-c1-active,
-    .quick-v2-active,
-    .quick-c2-active,
-    .quick-goteo-active,
-    .quick-gbase-active,
-    .quick-gbuscada-active,
-    .quick-focal-active,
-    .quick-mag-active {
-      background-color: #fbbf24 !important;
-      color: #000000 !important;
-      font-weight: 900 !important;
-      border: 2px solid #b45309 !important;
-      box-shadow: 0 2px 8px rgba(180, 83, 9, 0.3) !important;
-    }
-
-    #formula_preset_select {
-      font-size: 0.85rem !important;
-      line-height: 1.25rem !important;
-      padding: 0.45rem 0.65rem !important;
-      font-weight: 700 !important;
-    }
-    #formula_preset_select optgroup,
-    #formula_preset_select option {
-      font-size: 0.85rem !important;
-      font-weight: 600 !important;
-    }
-
-    body.safelight-mode {
-      color: #ffa3a3 !important;
-    }
-    
-    body.safelight-mode .app-header h1 {
-      color: #ff6666 !important;
-      text-shadow: 0 0 10px rgba(255, 102, 102, 0.6) !important;
-    }
-    body.safelight-mode .app-header p,
-    body.safelight-mode #headerSubtitle {
-      color: #ffa88a !important;
-      text-shadow: 0 0 8px rgba(255, 168, 138, 0.45) !important;
-    }
-    body.safelight-mode .cat-btn span {
-      color: #ff9999 !important;
-    }
-    body.safelight-mode .cat-btn-active span {
-      color: #ff6666 !important;
-      text-shadow: 0 0 10px rgba(255, 102, 102, 0.7) !important;
-    }
-    body.safelight-mode .cat-btn-inactive span {
-      color: #ff7575 !important;
-    }
-
-    body.safelight-mode h1,
-    body.safelight-mode h2,
-    body.safelight-mode h3,
-    body.safelight-mode h4,
-    body.safelight-mode strong {
-      color: #ff6666 !important;
-      text-shadow: 0 0 8px rgba(255, 102, 102, 0.4) !important;
-    }
-    body.safelight-mode label {
-      color: #ffb8b8 !important;
-      font-weight: 800 !important;
-    }
-    body.safelight-mode p,
-    body.safelight-mode span {
-      color: #ffa3a3 !important;
-    }
-    body.safelight-mode .text-slate-400,
-    body.safelight-mode .text-slate-500 {
-      color: #ff8585 !important;
-    }
-
-    body.safelight-mode #verticalSubnavPanel .app-card {
-      background-color: rgba(25, 5, 5, 0.95) !important;
-      border: 2px solid #ef4444 !important;
-    }
-    body.safelight-mode #verticalSubnavPanel .vert-sub-btn {
-      background-color: #2b0808 !important;
-      border: 1px solid #7f1d1d !important;
-      color: #ffa3a3 !important;
-    }
-    body.safelight-mode #verticalSubnavPanel .vert-sub-btn * {
-      color: #ffa3a3 !important;
-    }
-    body.safelight-mode #verticalSubnavPanel .vert-sub-btn.vert-item-active {
-      background-color: #881313 !important;
-      border: 2px solid #ef4444 !important;
-      color: #ff6666 !important;
-    }
-    body.safelight-mode #verticalSubnavPanel .vert-sub-btn.vert-item-active * {
-      color: #ff6666 !important;
-    }
-
-    body.safelight-mode #stock_res_ml,
-    body.safelight-mode #stouffer_res_t,
-    body.safelight-mode #stouffer_res_pic,
-    body.safelight-mode #amp_res_seg,
-    body.safelight-mode #fuelle_res_t,
-    body.safelight-mode #digi_res_ppp,
-    body.safelight-mode #stitch_res_mp,
-    body.safelight-mode #fstop_quick_val,
-    body.safelight-mode #fuelle_res_dist,
-    body.safelight-mode .text-lab-highlight,
-    body.safelight-mode [id*="_corto"],
-    body.safelight-mode [id*="_largo"] {
-      color: #ff6666 !important;
-      text-shadow: 0 0 12px rgba(255, 77, 77, 0.65) !important;
-      font-weight: 900 !important;
-    }
-
-    body.safelight-mode .cat-btn span.text-2xl,
-    body.safelight-mode .cat-btn span.text-3xl,
-    body.safelight-mode .vert-sub-btn span.text-xl,
-    body.safelight-mode .vert-sub-btn span.text-2xl,
-    body.safelight-mode #safelightIcon,
-    body.safelight-mode [class*="text-xl"]:not(input),
-    body.safelight-mode [class*="text-2xl"]:not(input),
-    body.safelight-mode [class*="text-3xl"]:not(input) {
-      filter: grayscale(100%) sepia(100%) hue-rotate(-50deg) saturate(1200%) brightness(0.95) !important;
-    }
-
-    body.safelight-mode svg {
-      stroke: #ef4444 !important;
-      color: #ef4444 !important;
-    }
-
-    #formula_ingredients_tbody input[type="text"],
-    #carbon_components_tbody input[type="text"],
-    .formula-chem-input {
-      font-size: 0.82rem !important;
-      line-height: 1.25 !important;
-      padding: 0.2rem 0.35rem !important;
-      font-weight: 600 !important;
-    }
-    @media (min-width: 640px) {
-      #formula_ingredients_tbody input[type="text"],
-      #carbon_components_tbody input[type="text"],
-      .formula-chem-input {
-        font-size: 0.88rem !important;
-        padding: 0.25rem 0.4rem !important;
-      }
-    }
-
-    #formula_ingredients_tbody input[type="number"],
-    .formula-qty-input {
-      font-size: 0.75rem !important;
-      line-height: 1.2 !important;
-      padding: 0.15rem 0.25rem !important;
-      font-weight: 700 !important;
-      width: 4.2rem !important;
-      max-width: 4.2rem !important;
-    }
-    @media (min-width: 640px) {
-      #formula_ingredients_tbody input[type="number"],
-      .formula-qty-input {
-        font-size: 0.82rem !important;
-        width: 5rem !important;
-        max-width: 5rem !important;
-      }
-    }
-
-    #formula_base_vol,
-    #formula_target_vol {
-      width: 5.5rem !important;
-      max-width: 5.5rem !important;
-      min-width: 0 !important;
-      font-size: 0.95rem !important;
-      padding: 0.3rem 0.4rem !important;
-    }
-    @media (min-width: 640px) {
-      #formula_base_vol,
-      #formula_target_vol {
-        width: 6.2rem !important;
-        max-width: 6.2rem !important;
-        font-size: 1.05rem !important;
-        padding: 0.4rem 0.5rem !important;
-      }
-    }
-
-    #tira_cards_container > div {
-      background-color: rgba(220, 242, 230, 0.70) !important;
-      border-color: rgba(45, 115, 75, 0.35) !important;
-    }
-    #tira_cards_container > div * {
-      color: #082615;
-    }
-
-    body.safelight-mode #registrationCard,
-    body.safelight-mode #authFooterSection .grid {
-      display: none !important;
-    }
-
-    body.safelight-mode,
-    body.safelight-mode *,
-    body.safelight-mode .text-white,
-    body.safelight-mode [class*="text-white"],
-    body.safelight-mode [class*="text-slate-100"],
-    body.safelight-mode [class*="text-slate-200"],
-    body.safelight-mode [class*="text-slate-300"],
-    body.safelight-mode [class*="text-slate-50"] {
-      color: #ffa3a3 !important;
-    }
-
-    body.safelight-mode h1,
-    body.safelight-mode h2,
-    body.safelight-mode h3,
-    body.safelight-mode h4,
-    body.safelight-mode [id*="_res_"],
-    body.safelight-mode .text-lab-highlight,
-    body.safelight-mode .font-black {
-      color: #ff6666 !important;
-      text-shadow: 0 0 8px rgba(255, 77, 77, 0.45) !important;
-    }
-
-    body.safelight-mode label,
-    body.safelight-mode strong {
-      color: #ffa3a3 !important;
-    }
-
-    body.safelight-mode .text-slate-400,
-    body.safelight-mode .text-slate-500,
-    body.safelight-mode .text-slate-600 {
-      color: #ff8585 !important;
-    }
-
-    body:not(.safelight-mode) #headerSubtitle {
-      color: #ffffff !important;
-    }
-    body.safelight-mode #headerSubtitle {
-      color: #ffa085 !important;
-      text-shadow: 0 0 8px rgba(255, 107, 74, 0.45) !important;
-    }
-
-    body.safelight-mode #view-fstoptimes th:nth-child(2),
-    body.safelight-mode #view-fstoptimes td:nth-child(2) {
-      display: none !important;
-    }
-    body.safelight-mode .tira-gray-swatch,
-    body.safelight-mode [title="Gris estimado resultante"] {
-      display: none !important;
-    }
-
-    #view-fstoptimes table {
-      border-collapse: separate !important;
-      border-spacing: 0 0.5rem !important;
-    }
-    #view-fstoptimes tbody tr {
-      border: 1.5px solid #dc2626 !important;
-      border-radius: 0.75rem !important;
-      background-color: rgba(220, 38, 38, 0.05) !important;
-      box-shadow: 0 1px 4px rgba(220, 38, 38, 0.15) !important;
-      transition: all 0.15s ease-in-out;
-    }
-    #view-fstoptimes tbody tr:hover {
-      background-color: rgba(220, 38, 38, 0.12) !important;
-      border-color: #ef4444 !important;
-    }
-    #view-fstoptimes tbody tr td:first-child {
-      border-top-left-radius: 0.75rem !important;
-      border-bottom-left-radius: 0.75rem !important;
-      border-left: 1.5px solid #dc2626 !important;
-      border-top: 1.5px solid #dc2626 !important;
-      border-bottom: 1.5px solid #dc2626 !important;
-    }
-    #view-fstoptimes tbody tr td {
-      border-top: 1.5px solid #dc2626 !important;
-      border-bottom: 1.5px solid #dc2626 !important;
-    }
-    #view-fstoptimes tbody tr td:last-child {
-      border-top-right-radius: 0.75rem !important;
-      border-bottom-right-radius: 0.75rem !important;
-      border-right: 1.5px solid #dc2626 !important;
-      border-top: 1.5px solid #dc2626 !important;
-      border-bottom: 1.5px solid #dc2626 !important;
-    }
-
-    #tira_cards_container > div {
-      border: 1.5px solid #dc2626 !important;
-      border-radius: 0.85rem !important;
-      box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15) !important;
-    }
-
-    body.safelight-mode #view-fstoptimes tbody tr {
-      border: 1.5px solid #ef4444 !important;
-      background-color: rgba(30, 6, 6, 0.35) !important;
-      box-shadow: 0 1px 6px rgba(239, 68, 68, 0.25) !important;
-    }
-    body.safelight-mode #view-fstoptimes tbody tr td:first-child {
-      border-left: 1.5px solid #ef4444 !important;
-      border-top: 1.5px solid #ef4444 !important;
-      border-bottom: 1.5px solid #ef4444 !important;
-    }
-    body.safelight-mode #view-fstoptimes tbody tr td {
-      border-top: 1.5px solid #ef4444 !important;
-      border-bottom: 1.5px solid #ef4444 !important;
-    }
-    body.safelight-mode #view-fstoptimes tbody tr td:last-child {
-      border-right: 1.5px solid #ef4444 !important;
-      border-top: 1.5px solid #ef4444 !important;
-      border-bottom: 1.5px solid #ef4444 !important;
-    }
-    body.safelight-mode #tira_cards_container > div {
-      border: 1.5px solid #ef4444 !important;
-      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3) !important;
-    }
-
-    body:not(.safelight-mode) #stouffer_step_label {
-      color: #123d24 !important;
-      background-color: rgba(39, 84, 61, 0.15) !important;
-      border-color: rgba(39, 84, 61, 0.45) !important;
-      font-weight: 900 !important;
-    }
-    body:not(.safelight-mode) .text-amber-500,
-    body:not(.safelight-mode) .text-amber-400,
-    body:not(.safelight-mode) .text-orange-400 {
-      color: #144026 !important;
-    }
-
-    #stouffer_res_t,
-    body.safelight-mode #stouffer_res_t {
-      text-shadow: none !important;
-      filter: none !important;
-    }
-
-    .stouffer-ruler-num {
-      font-size: 1.15rem !important;
-    }
-    @media (min-width: 640px) {
-      .stouffer-ruler-num {
-        font-size: 1.35rem !important;
-      }
-    }
-    .stouffer-ruler-num.stouffer-ruler-active {
-      font-size: 1.45rem !important;
-    }
-    @media (min-width: 640px) {
-      .stouffer-ruler-num.stouffer-ruler-active {
-        font-size: 1.85rem !important;
-      }
-    }
-
-    #stouffer_tbody td {
-      font-size: 0.92rem !important;
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
-    }
-    @media (min-width: 640px) {
-      #stouffer_tbody td {
-        font-size: 1.05rem !important;
-      }
-    }
-
-    #safelightToggle {
-      padding-left: 0.85rem !important;
-      padding-right: 0.85rem !important;
-      white-space: nowrap !important;
-    }
-    @media (min-width: 640px) {
-      #safelightToggle {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-      }
-    }
-
-    body.safelight-mode #safelightToggle {
-      background-color: #3b0a0a !important;
-      border-color: #b91c1c !important;
-      color: #fecaca !important;
-      box-shadow: 0 0 10px rgba(185, 28, 28, 0.4) !important;
-    }
-    body.safelight-mode #infoBtn {
-      background-color: #200606 !important;
-      border-color: #5c1414 !important;
-      color: #fed7aa !important;
-    }
-  </style>
+body.safelight-mode .header-divider-strip {background: linear-gradient(90deg, #2b0606 0%, #881313 50%, #2b0606 100%) !important;}
+body.safelight-mode #safelightToggle {background-color: #3b0a0a !important; border-color: #b91c1c !important; color: #fecaca !important;}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-full flex flex-col antialiased selection:bg-amber-100 selection:text-amber-900 pb-14 transition-colors duration-150">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-full flex flex-col antialiased pb-14 transition-colors duration-150">
 
-  <!-- Fondo General con Marca de Agua Sutil: Cristalería y Material de Laboratorio -->
-  <div class="page-watermark fixed inset-0 pointer-events-none overflow-hidden select-none z-0" aria-hidden="true">
-    <svg class="w-full h-full object-cover" viewBox="0 0 1200 900" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <defs>
-        <pattern id="labPattern" width="320" height="320" patternUnits="userSpaceOnUse">
-          <g transform="translate(20, 20) scale(0.95)">
-            <path d="M40 5 L40 38 L10 102 C6 110 12 118 22 118 L82 118 C92 118 98 110 94 102 L64 38 L64 5 Z" />
-            <line x1="32" y1="5" x2="72" y2="5" />
-            <line x1="28" y1="75" x2="56" y2="75" />
-            <line x1="22" y1="92" x2="66" y2="92" />
-            <line x1="17" y1="108" x2="76" y2="108" />
-          </g>
-          <g transform="translate(160, 15) scale(0.95)">
-            <rect x="25" y="10" width="30" height="118" rx="3" />
-            <ellipse cx="40" cy="10" rx="18" ry="4" />
-            <path d="M10 128 L70 128" stroke-width="2.8" />
-            <line x1="25" y1="30" x2="40" y2="30" />
-            <line x1="25" y1="50" x2="46" y2="50" stroke-width="2.5" />
-            <line x1="25" y1="70" x2="40" y2="70" />
-            <line x1="25" y1="90" x2="46" y2="90" stroke-width="2.5" />
-            <line x1="25" y1="110" x2="40" y2="110" />
-          </g>
-          <g transform="translate(25, 175) scale(0.9)">
-            <path d="M12 12 L20 12 L20 105 C20 114 26 120 36 120 L84 120 C94 120 100 114 100 105 L100 12 L108 12" />
-            <line x1="32" y1="42" x2="54" y2="42" />
-            <line x1="32" y1="68" x2="60" y2="68" stroke-width="2.5" />
-            <line x1="32" y1="94" x2="54" y2="94" />
-          </g>
-          <g transform="translate(175, 175) scale(0.88)">
-            <path d="M15 15 L85 15 L56 62 L56 108 L44 108 L44 62 Z" />
-            <line x1="8" y1="15" x2="92" y2="15" stroke-width="2.5" />
-          </g>
-          <g transform="translate(120, 40) scale(0.85)">
-            <rect x="5" y="10" width="8" height="110" rx="4" />
-            <circle cx="9" cy="124" r="8" />
-            <line x1="5" y1="30" x2="10" y2="30" />
-            <line x1="5" y1="50" x2="12" y2="50" />
-            <line x1="5" y1="70" x2="10" y2="70" />
-            <line x1="5" y1="90" x2="12" y2="90" />
-          </g>
-          <g transform="translate(270, 70) scale(0.85)">
-            <ellipse cx="10" cy="15" rx="9" ry="14" />
-            <path d="M7 29 L7 105 L10 120 L13 105 L13 29 Z" />
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#labPattern)" />
-    </svg>
-  </div>
-
-  <!-- Header Superior -->
-  <header class="app-header relative overflow-hidden sticky top-0 z-30 bg-slate-900 text-white border-b border-slate-800 shadow-lg">
-    <div class="header-watermark absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-between px-2 select-none z-0" aria-hidden="true">
-      <svg class="h-28 sm:h-32 w-full object-cover text-emerald-300/15 dark:text-red-500/20" viewBox="0 0 1000 130" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <g transform="translate(15, 10)">
-          <path d="M40 10 L55 10 M47 10 L47 38 L20 95 C15 106 24 112 35 112 L85 112 C96 112 105 106 100 95 L73 38 L73 10 Z" />
-          <line x1="33" y1="80" x2="87" y2="80" stroke-dasharray="4 4" />
-          <line x1="40" y1="62" x2="80" y2="62" stroke-dasharray="4 4" />
-          <circle cx="58" cy="92" r="3" fill="currentColor" opacity="0.4" />
-          <circle cx="68" cy="84" r="2" fill="currentColor" opacity="0.4" />
-          <circle cx="48" cy="88" r="2.5" fill="currentColor" opacity="0.4" />
-        </g>
-        <g transform="translate(150, 20)">
-          <path d="M15 10 L15 85 A8 8 0 0 0 31 85 L31 10" />
-          <line x1="15" y1="60" x2="31" y2="60" />
-          <path d="M45 15 L45 85 A8 8 0 0 0 61 85 L45 15" transform="rotate(8 53 50)" />
-          <line x1="5" y1="92" x2="70" y2="92" stroke-width="3" />
-        </g>
-        <g transform="translate(350, 8)">
-          <path d="M25 10 L25 110 L15 116 L55 116 L45 110 L45 10 Z" />
-          <path d="M20 10 L50 10" />
-          <line x1="25" y1="30" x2="35" y2="30" />
-          <line x1="25" y1="50" x2="38" y2="50" />
-          <line x1="25" y1="70" x2="35" y2="70" />
-          <line x1="25" y1="90" x2="38" y2="90" />
-        </g>
-        <g transform="translate(620, 15)">
-          <path d="M20 10 L80 10 L55 50 L55 95 L45 95 L45 50 Z" />
-          <path d="M100 25 L95 25 L95 105 A6 6 0 0 0 101 111 L150 111 A6 6 0 0 0 156 105 L156 25 Z" />
-          <line x1="95" y1="50" x2="110" y2="50" />
-          <line x1="95" y1="75" x2="115" y2="75" />
-          <line x1="95" y1="95" x2="120" y2="95" stroke-dasharray="3 3" />
-        </g>
-        <g transform="translate(850, 15)">
-          <circle cx="50" cy="55" r="36" />
-          <circle cx="50" cy="55" r="24" stroke-dasharray="5 3" />
-          <circle cx="50" cy="55" r="10" />
-          <path d="M100 20 L108 85 L116 110" />
-          <path d="M125 20 L117 85 L116 110" />
-        </g>
-      </svg>
-    </div>
-
+<!-- Header Superior -->
+<header class="app-header relative overflow-hidden sticky top-0 z-30 bg-slate-900 text-white border-b border-slate-800 shadow-lg">
     <div class="w-full max-w-5xl mx-auto px-3 sm:px-4 pt-2.5 pb-1 relative z-10">
-      <div class="flex items-center justify-between gap-3">
-        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2 whitespace-nowrap leading-none">
-          CALCU-LABO
-        </h1>
-        <div class="flex items-center flex-shrink-0">
-          <button id="safelightToggle" class="px-4 sm:px-6 py-2 rounded-xl border border-slate-700/80 bg-slate-800/80 text-xs sm:text-sm font-bold text-slate-200 inline-flex items-center justify-center gap-2 hover:border-amber-400 active:scale-95 transition-all shadow-sm cursor-pointer select-none whitespace-nowrap min-w-[125px] sm:min-w-[145px]" title="Cambiar a Modo Labo">
-            <span id="safelightIcon" class="text-base sm:text-lg flex-shrink-0">🔴</span>
-            <span id="safelightText" class="font-bold tracking-wide">Modo Labo</span>
-          </button>
+        <div class="flex items-center justify-between gap-3">
+            <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2 whitespace-nowrap leading-none">
+                CALCU-LABO
+            </h1>
+            <div class="flex items-center flex-shrink-0">
+                <button id="safelightToggle" class="px-3.5 py-1.5 rounded-xl border border-slate-700/80 bg-slate-800/80 text-xs font-bold text-slate-200 inline-flex items-center justify-center gap-1.5 hover:border-amber-400 active:scale-95 transition-all shadow-sm cursor-pointer select-none whitespace-nowrap">
+                    <span id="safelightIcon" class="text-sm flex-shrink-0">🔴</span>
+                    <span id="safelightText" class="font-bold tracking-wide">Modo Labo</span>
+                </button>
+            </div>
         </div>
-      </div>
-      <p id="headerSubtitle" class="text-xs sm:text-sm font-medium tracking-wide mt-1 truncate">
-        Asistente para cálculos básicos en fotografía digital &amp; analógica: laboratorio, ampliaciónes, digitalización, tiempo standard, etc.
-      </p>
+        <p id="headerSubtitle" class="text-xs sm:text-sm font-medium tracking-wide mt-1 truncate text-white">
+            Asistente para cálculos básicos en fotografía digital & analógica: laboratorio, ampliaciones, digitalización, tiempo standard, etc.
+        </p>
     </div>
 
-    <div class="w-full max-w-5xl mx-auto px-3 pt-2 pb-5 sm:pb-6 relative z-10">
-      <div class="grid grid-cols-2 gap-x-6 sm:gap-x-12 gap-y-2 sm:gap-y-3 max-w-sm sm:max-w-md mx-auto py-1">
-        <button id="catTab-quimica" class="cat-btn transition-all text-center cat-btn-active inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer active:scale-95 select-none" data-category="quimica" title="Química">
-          <span class="text-2xl sm:text-3xl flex-shrink-0">⚗️</span>
-          <span class="font-extrabold text-sm sm:text-base leading-tight">Química</span>
-          <span id="chevron-quimica" class="cat-chevron text-xs sm:text-sm font-black transition-transform duration-200 opacity-75">▾</span>
-        </button>
-        <button id="catTab-exposicion" class="cat-btn transition-all text-center cat-btn-inactive inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer active:scale-95 select-none" data-category="exposicion" title="Exposición">
-          <span class="text-2xl sm:text-3xl flex-shrink-0">💡</span>
-          <span class="font-extrabold text-sm sm:text-base leading-tight">Exposición</span>
-          <span id="chevron-exposicion" class="cat-chevron text-xs sm:text-sm font-black transition-transform duration-200 opacity-75">▾</span>
-        </button>
-        <button id="catTab-optica" class="cat-btn transition-all text-center cat-btn-inactive inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer active:scale-95 select-none" data-category="optica" title="Óptica & Digitalización">
-          <span class="text-2xl sm:text-3xl flex-shrink-0">📐</span>
-          <span class="font-extrabold text-sm sm:text-base leading-tight truncate">Óptica &amp; Digi</span>
-          <span id="chevron-optica" class="cat-chevron text-xs sm:text-sm font-black transition-transform duration-200 opacity-75">▾</span>
-        </button>
-        <button id="catTab-impresion" class="cat-btn transition-all text-center cat-btn-inactive inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer active:scale-95 select-none" data-category="impresion" title="Impresión">
-          <span class="text-2xl sm:text-3xl flex-shrink-0">🖼️</span>
-          <span class="font-extrabold text-sm sm:text-base leading-tight">Impresión</span>
-          <span id="chevron-impresion" class="cat-chevron text-xs sm:text-sm font-black transition-transform duration-200 opacity-75">▾</span>
-        </button>
-      </div>
+    <!-- Pestañas de Categorías Principales (2x2) -->
+    <div class="w-full max-w-5xl mx-auto px-3 pt-2 pb-5 relative z-10">
+        <div class="grid grid-cols-2 gap-x-6 gap-y-2 max-w-sm mx-auto py-1">
+            <button id="catTab-quimica" class="cat-btn transition-all text-center cat-btn-active inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer" data-category="quimica">
+                <span class="text-2xl flex-shrink-0">⚗️</span>
+                <span class="font-extrabold text-sm leading-tight text-white">Química</span>
+            </button>
+            <button id="catTab-exposicion" class="cat-btn transition-all text-center cat-btn-inactive inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer" data-category="exposicion">
+                <span class="text-2xl flex-shrink-0">💡</span>
+                <span class="font-extrabold text-sm leading-tight text-white">Exposición</span>
+            </button>
+            <button id="catTab-optica" class="cat-btn transition-all text-center cat-btn-inactive inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer" data-category="optica">
+                <span class="text-2xl flex-shrink-0">📐</span>
+                <span class="font-extrabold text-sm leading-tight truncate text-white">Óptica &amp; Digi</span>
+            </button>
+            <button id="catTab-impresion" class="cat-btn transition-all text-center cat-btn-inactive inline-flex items-center justify-center gap-2 py-1 px-2 cursor-pointer" data-category="impresion">
+                <span class="text-2xl flex-shrink-0">🖼️</span>
+                <span class="font-extrabold text-sm leading-tight text-white">Impresión</span>
+            </button>
+        </div>
     </div>
-
-    <div id="verticalSubnavPanel" class="w-full max-w-5xl mx-auto px-3 pb-4 relative z-30 hidden transition-all duration-200">
-      <div class="app-card rounded-2xl p-2 sm:p-2.5 shadow-2xl border-2 border-emerald-700/50 dark:border-red-800/90 bg-white/98 dark:bg-stone-950/98 backdrop-blur-md">
-        <div id="verticalSubnavItems" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5"></div>
-      </div>
-    </div>
-
     <div class="header-divider-strip w-full relative z-20"></div>
-  </header>
+</header>
 
-  <!-- Contenedor Principal Adaptable Horizontal -->
-  <main class="w-full max-w-5xl mx-auto px-3 sm:px-6 pt-7 pb-10 sm:pt-9 sm:pb-12 flex-1">
+<!-- Contenido Principal -->
+<main class="w-full max-w-5xl mx-auto px-3 sm:px-6 pt-7 pb-10 flex-1 space-y-6">
 
-    <!-- 1. VISTA: DILUCIÓN DE SOLUCIÓN STOCK -->
+    <!-- VISTA 1: DILUCIÓN DE SOLUCIÓN STOCK -->
     <div id="view-stock" class="calc-view space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100 gap-2">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900 whitespace-nowrap">Dilución de Solución Stock</h2>
-            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Calcula la cantidad de stock y agua requerida</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold whitespace-nowrap flex-shrink-0">C₁·V₁ = C₂·V₂</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-4">
-            <div class="text-center p-3 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-2">
-              <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Concentración Stock</label>
-              <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3.5 pt-0.5 pb-1">
-                <button type="button" class="quick-c1-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c1="5">5%</button>
-                <button type="button" class="quick-c1-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c1="10">10%</button>
-                <button type="button" class="quick-c1-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all shadow-sm quick-c1-active" data-c1="20">20%</button>
-                <button type="button" class="quick-c1-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c1="50">50%</button>
-                <button type="button" class="quick-c1-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c1="100">100% (Puro)</button>
-              </div>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="stock_c1" inputmode="decimal" step="any" min="0.1" max="100" value="20" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base sm:text-lg font-mono font-extrabold text-slate-400 select-none">%</span>
-              </div>
-              <div class="flex items-center gap-2 px-1 pt-1">
-                <input type="range" id="stock_c1_slider" min="5" max="100" step="5" value="20" class="cursor-pointer flex-1">
-                <span class="text-xs font-mono font-bold text-slate-500 w-12 text-right" id="stock_c1_disp">20%</span>
-              </div>
-            </div>
-
-            <div class="text-center p-3 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-2">
-              <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Volumen Final Deseado</label>
-              <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3.5 pt-0.5 pb-1">
-                <button type="button" class="quick-v2-btn px-3 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-v2="50">50 ml</button>
-                <button type="button" class="quick-v2-btn px-3 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-v2="100">100 ml</button>
-                <button type="button" class="quick-v2-btn px-3 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-v2="250">250 ml</button>
-                <button type="button" class="quick-v2-btn px-3 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-v2="500">500 ml</button>
-                <button type="button" class="quick-v2-btn px-3 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-v2="1000">1000 ml (1 L)</button>
-              </div>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="stock_v2" inputmode="decimal" step="any" min="10" max="1000" value="75" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base sm:text-lg font-mono font-extrabold text-slate-400 select-none">ml</span>
-              </div>
-              <div class="flex items-center gap-2 px-1 pt-1">
-                <input type="range" id="stock_v2_slider" min="25" max="1000" step="25" value="75" class="cursor-pointer flex-1">
-                <span class="text-xs font-mono font-bold text-slate-500 w-16 text-right" id="stock_v2_disp">75 ml</span>
-              </div>
-            </div>
-
-            <div class="text-center p-3 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-2">
-              <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Concentración Buscada</label>
-              <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3.5 pt-0.5 pb-1">
-                <button type="button" class="quick-c2-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c2="0.5">0.5%</button>
-                <button type="button" class="quick-c2-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all shadow-sm quick-c2-active" data-c2="1.0">1.0%</button>
-                <button type="button" class="quick-c2-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c2="2.0">2.0%</button>
-                <button type="button" class="quick-c2-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c2="5.0">5.0%</button>
-                <button type="button" class="quick-c2-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c2="10.0">10%</button>
-                <button type="button" class="quick-c2-btn px-3.5 py-1.5 text-xs sm:text-sm font-mono font-bold rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-sm" data-c2="20.0">20%</button>
-              </div>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="stock_c2" inputmode="decimal" step="any" min="0.01" max="100" value="1.0" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base sm:text-lg font-mono font-extrabold text-slate-400 select-none">%</span>
-              </div>
-              <div class="flex items-center gap-2 px-1 pt-1">
-                <input type="range" id="stock_c2_slider" min="0" max="100" step="5" value="1" class="cursor-pointer flex-1">
-                <span class="text-xs font-mono font-bold text-slate-500 w-12 text-right" id="stock_c2_disp">1.0%</span>
-              </div>
-            </div>
-
-            <button id="copyStockBtn" class="w-full py-2.5 px-3 text-xs sm:text-sm font-medium rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 flex items-center justify-center gap-1.5 active:scale-98 transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-              Copiar Ficha de Preparación
-            </button>
-          </div>
-
-          <div class="space-y-4">
-            <div class="app-result-box p-4 text-white rounded-xl space-y-3">
-              <div class="flex items-baseline justify-between">
-                <span class="text-sm sm:text-base text-slate-200 font-bold">Solución STOCK requerida:</span>
-                <div class="text-right">
-                  <span id="stock_res_ml" class="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400">3.75</span>
-                  <span class="text-base font-mono text-slate-300 ml-1">ml</span>
-                </div>
-              </div>
-              <div class="flex items-baseline justify-between border-t border-slate-800 pt-2.5">
-                <span class="text-sm sm:text-base text-slate-200 font-bold">Agua / Diluyente a agregar:</span>
-                <div class="text-right">
-                  <span id="stock_res_agua" class="text-xl sm:text-2xl font-mono font-bold text-slate-100">71.25</span>
-                  <span class="text-sm font-mono text-slate-400 ml-1">ml</span>
-                </div>
-              </div>
-              <div class="flex items-center justify-between border-t border-slate-800 pt-2 text-sm sm:text-base">
-                <span class="text-slate-300 font-medium">Relación de dilución:</span>
-                <span id="stock_res_ratio" class="font-mono text-slate-100 font-bold">1:20</span>
-              </div>
-              <div id="stock_gotas_row" class="flex items-center justify-between border-t border-slate-800 pt-2 text-sm sm:text-base">
-                <span class="text-slate-300 font-medium">Equivalente en gotas (20 gts/ml):</span>
-                <span id="stock_res_gotas" class="font-mono text-amber-300 font-extrabold">75 gotas</span>
-              </div>
-            </div>
-
-            <div class="overflow-x-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left text-xs sm:text-sm font-mono">
-                <thead class="app-table-th bg-slate-100 border-b border-slate-200 text-slate-700">
-                  <tr>
-                    <th class="py-2.5 px-3">Vol. Final</th>
-                    <th class="py-2.5 px-3 text-amber-500 font-bold">Stock Requerido</th>
-                    <th class="py-2.5 px-3 text-right">Agua a Agregar</th>
-                  </tr>
-                </thead>
-                <tbody id="stock_std_tbody" class="divide-y divide-slate-100"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. VISTA: DILUCIÓN POR GOTEO -->
-    <div id="view-goteo" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Dilución por Goteo</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Cálculo de gotas enteras con tolerancia de error elegible</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-blue-50 text-blue-800 border border-blue-200 font-semibold">Gotas</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-3.5">
-            <div class="text-center p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-3">
-              <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Concentración Solución Base</label>
-              <div class="flex flex-wrap justify-center gap-3 sm:gap-4 pt-1 pb-1.5">
-                <button type="button" class="quick-gbase-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbase="5">5%</button>
-                <button type="button" class="quick-gbase-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all shadow-xs quick-gbase-active" data-gbase="10">10%</button>
-                <button type="button" class="quick-gbase-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbase="20">20%</button>
-                <button type="button" class="quick-gbase-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbase="50">50%</button>
-                <button type="button" class="quick-gbase-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbase="100">100%</button>
-              </div>
-              <div class="flex justify-center items-center gap-2 pt-0.5">
-                <input type="number" id="goteo_base" inputmode="decimal" min="0.1" max="100" step="any" value="10" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">%</span>
-              </div>
-              <div class="pt-1.5 px-2">
-                <input type="range" id="goteo_base_slider" min="5" max="100" step="5" value="10" class="cursor-pointer">
-              </div>
-            </div>
-
-            <div class="text-center p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 space-y-3">
-              <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Concentración Buscada</label>
-              <div class="flex flex-wrap justify-center gap-3 sm:gap-4 pt-1 pb-1.5">
-                <button type="button" class="quick-gbuscada-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbuscada="1">1%</button>
-                <button type="button" class="quick-gbuscada-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all shadow-xs quick-gbuscada-active" data-gbuscada="2">2%</button>
-                <button type="button" class="quick-gbuscada-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbuscada="5">5%</button>
-                <button type="button" class="quick-gbuscada-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbuscada="10">10%</button>
-                <button type="button" class="quick-gbuscada-btn px-4 sm:px-5 py-2 text-sm sm:text-base font-mono font-black rounded-xl border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all shadow-xs" data-gbuscada="20">20%</button>
-              </div>
-              <div class="flex justify-center items-center gap-2 pt-0.5">
-                <input type="number" id="goteo_buscada" inputmode="decimal" min="0.01" max="100" step="any" value="2" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">%</span>
-              </div>
-              <div class="pt-1.5 px-2">
-                <input type="range" id="goteo_buscada_slider" min="1" max="50" step="5" value="2" class="cursor-pointer">
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <label class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-amber-200">Margen de Error Aceptable</label>
-                <span class="text-xs font-mono font-bold text-amber-600" id="goteo_tol_label">&plusmn;10%</span>
-              </div>
-              <select id="goteo_tol" class="app-input w-full text-xs sm:text-sm font-medium py-1.5 px-3">
-                <option value="0.03">&plusmn;3% (Precisión analítica)</option>
-                <option value="0.05">&plusmn;5% (Estricto)</option>
-                <option value="0.10" selected>&plusmn;10% (Estándar)</option>
-                <option value="0.15">&plusmn;15% (Flexible)</option>
-                <option value="0.20">&plusmn;20% (Amplio)</option>
-              </select>
-            </div>
-
-            <div class="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
-              <div class="flex justify-between items-center mb-1">
+        <div class="app-card rounded-2xl border p-4 sm:p-6 shadow-sm">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 gap-2">
                 <div>
-                  <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Total de Gotas a preparar:</label>
-                  <span class="text-xs text-slate-400">Desliza la barra para elegir (2 a 40 gotas)</span>
+                    <h2 class="font-bold text-base sm:text-lg text-slate-900">Dilución de Solución Stock</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Calcula la cantidad de stock y agua requerida</p>
                 </div>
-                <span id="goteo_quick_val" class="text-base sm:text-lg font-mono font-black text-amber-500 min-w-[85px] text-center px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-xl">8 gotas</span>
-              </div>
-              
-              <div class="relative px-2 py-1">
-                <input type="range" id="goteo_slider" min="2" max="40" value="8" class="cursor-pointer">
-                <div id="goteo_ticks_container" class="flex justify-between px-1 mt-1 text-[11px] font-mono text-slate-400 font-medium"></div>
-              </div>
-
-              <div class="flex flex-wrap justify-center gap-2 mt-2 pt-1">
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-goteo="4">4 gts</button>
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all quick-goteo-active" data-goteo="8">8 gts</button>
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-goteo="12">12 gts</button>
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-goteo="16">16 gts</button>
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-goteo="20">20 gts</button>
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-goteo="30">30 gts</button>
-                <button type="button" class="quick-goteo-btn px-3 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-goteo="40">40 gts</button>
-              </div>
+                <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-emerald-50 text-emerald-800 border font-semibold">C₁·V₁ = C₂·V₂</span>
             </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
+                <div class="space-y-4">
+                    <div class="text-center p-3 rounded-2xl bg-slate-50/70 border space-y-2">
+                        <label class="text-sm font-bold text-slate-800 block">Concentración Stock</label>
+                        <div class="flex flex-wrap justify-center gap-2 pt-0.5 pb-1">
+                            <button type="button" class="quick-c1-btn" data-c1="5">5%</button>
+                            <button type="button" class="quick-c1-btn" data-c1="10">10%</button>
+                            <button type="button" class="quick-c1-btn quick-c1-active" data-c1="20">20%</button>
+                            <button type="button" class="quick-c1-btn" data-c1="50">50%</button>
+                            <button type="button" class="quick-c1-btn" data-c1="100">100%</button>
+                        </div>
+                        <div class="flex justify-center items-center gap-2">
+                            <input type="number" id="stock_c1" value="20" class="app-input w-20 text-center">
+                            <span class="font-mono font-bold text-slate-500">%</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-1 pt-1">
+                            <input type="range" id="stock_c1_slider" min="5" max="100" step="5" value="20" class="flex-1">
+                            <span class="text-xs font-mono font-bold text-slate-600 w-12 text-right" id="stock_c1_disp">20%</span>
+                        </div>
+                    </div>
 
-            <div id="goteo_quick_card" class="p-4 rounded-xl border text-xs sm:text-sm"></div>
-          </div>
+                    <div class="text-center p-3 rounded-2xl bg-slate-50/70 border space-y-2">
+                        <label class="text-sm font-bold text-slate-800 block">Volumen Final Deseado</label>
+                        <div class="flex flex-wrap justify-center gap-2 pt-0.5 pb-1">
+                            <button type="button" class="quick-v2-btn" data-v2="50">50 ml</button>
+                            <button type="button" class="quick-v2-btn" data-v2="100">100 ml</button>
+                            <button type="button" class="quick-v2-btn" data-v2="250">250 ml</button>
+                            <button type="button" class="quick-v2-btn" data-v2="500">500 ml</button>
+                            <button type="button" class="quick-v2-btn" data-v2="1000">1000 ml</button>
+                        </div>
+                        <div class="flex justify-center items-center gap-2">
+                            <input type="number" id="stock_v2" value="75" class="app-input w-20 text-center">
+                            <span class="font-mono font-bold text-slate-500">ml</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-1 pt-1">
+                            <input type="range" id="stock_v2_slider" min="25" max="1000" step="25" value="75" class="flex-1">
+                            <span class="text-xs font-mono font-bold text-slate-600 w-16 text-right" id="stock_v2_disp">75 ml</span>
+                        </div>
+                    </div>
 
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <span class="text-xs sm:text-sm font-semibold text-slate-800">Entorno cercano de gotas (±7 del valor elegido):</span>
-              <span class="text-xs text-slate-500 font-medium" id="goteo_table_legend">Verde = Error &le; 10%</span>
+                    <div class="text-center p-3 rounded-2xl bg-slate-50/70 border space-y-2">
+                        <label class="text-sm font-bold text-slate-800 block">Concentración Buscada</label>
+                        <div class="flex flex-wrap justify-center gap-2 pt-0.5 pb-1">
+                            <button type="button" class="quick-c2-btn" data-c2="0.5">0.5%</button>
+                            <button type="button" class="quick-c2-btn quick-c2-active" data-c2="1.0">1.0%</button>
+                            <button type="button" class="quick-c2-btn" data-c2="2.0">2.0%</button>
+                            <button type="button" class="quick-c2-btn" data-c2="5.0">5.0%</button>
+                        </div>
+                        <div class="flex justify-center items-center gap-2">
+                            <input type="number" id="stock_c2" value="1.0" class="app-input w-20 text-center">
+                            <span class="font-mono font-bold text-slate-500">%</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-1 pt-1">
+                            <input type="range" id="stock_c2_slider" min="0" max="100" step="5" value="1" class="flex-1">
+                            <span class="text-xs font-mono font-bold text-slate-600 w-12 text-right" id="stock_c2_disp">1.0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="app-result-box p-4 rounded-xl space-y-3">
+                        <div class="flex items-baseline justify-between">
+                            <span class="text-sm font-bold">Solución STOCK requerida:</span>
+                            <div class="text-right">
+                                <span id="stock_res_ml" class="text-3xl font-extrabold font-mono text-amber-400">3.75</span>
+                                <span class="text-base font-mono ml-1">ml</span>
+                            </div>
+                        </div>
+                        <div class="flex items-baseline justify-between border-t border-slate-700 pt-2.5">
+                            <span class="text-sm font-bold">Agua / Diluyente a agregar:</span>
+                            <div class="text-right">
+                                <span id="stock_res_agua" class="text-xl font-mono font-bold">71.25</span>
+                                <span class="text-sm font-mono ml-1">ml</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-slate-700 pt-2 text-sm">
+                            <span>Relación de dilución:</span>
+                            <span id="stock_res_ratio" class="font-mono font-bold">1:20</span>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-slate-700 pt-2 text-sm">
+                            <span>Equivalente en gotas (20 gts/ml):</span>
+                            <span id="stock_res_gotas" class="font-mono font-extrabold text-amber-300">75 gotas</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="max-h-80 overflow-y-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left text-xs sm:text-sm font-mono">
-                <thead class="app-table-th bg-slate-100 sticky top-0 border-b border-slate-200 text-slate-700">
-                  <tr>
-                    <th class="py-2 px-3">Total</th>
-                    <th class="py-2 px-2.5">Base</th>
-                    <th class="py-2 px-2.5">Agua</th>
-                    <th class="py-2 px-2.5">% Final</th>
-                    <th class="py-2 px-3 text-right">¿Usar?</th>
-                  </tr>
-                </thead>
-                <tbody id="goteo_tbody" class="divide-y divide-slate-100"></tbody>
-              </table>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!-- 3. VISTA: ASISTENTE & REESCALADO DE FÓRMULAS QUÍMICAS -->
-    <div id="view-formulas" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900 flex items-center gap-1.5">
-              <span>🧪</span> Reescalado de Fórmulas
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-500">Recetas clásicas, procesos alternativos (Argirotipo, FerroBlend) y notas de laboratorio</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">Reescalado</span>
+    <!-- SECCIÓN INFERIOR: ACCESO Y REGISTRO (CON LETRAS MÁS CHICAS Y CAMPOS EN VERDE SUAVE) -->
+    <div class="app-card rounded-2xl border p-4 sm:p-5 shadow-sm space-y-4">
+        <div class="border-b border-slate-200 pb-2.5">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900">Calcu-labo</h3>
+            <p class="text-xs text-slate-500">Gestión de sesión del laboratorio</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-4 items-start">
-          <div class="lg:col-span-5 space-y-4">
-            <div>
-              <label class="text-xs sm:text-sm font-bold text-slate-800 dark:text-amber-200 block mb-1">Elegir receta</label>
-              <select id="formula_preset_select" class="app-input w-full text-xs sm:text-sm font-semibold py-1.5 px-3 leading-snug">
-                <optgroup label="REVELADORES DE PELÍCULA">
-                  <option value="d76" selected>Kodak D-76 (B&N Clásico 1927)</option>
-                  <option value="d23">Kodak D-23 (Semi-Compensador)</option>
-                  <option value="d76h">D-76H / Eco D-76 (Sin Hidroquinona)</option>
-                  <option value="thornton">Barry Thornton (Revelador 2 Baños)</option>
-                </optgroup>
-                <optgroup label="REVELADORES DE PAPEL">
-                  <option value="d72">Kodak D-72 / Dektol (Papel B&N)</option>
-                  <option value="ansco130">Ansco 130 (Tonos Cálidos / Glicina)</option>
-                </optgroup>
-                <optgroup label="PROCESOS HISTÓRICOS Y ALTERNATIVOS">
-                  <option value="cianotipo_simple">Cianotipo Simple (Mike Ware / Nueva Fórmula)</option>
-                  <option value="cianotipo_tradicional">Cianotipo Tradicional (A+B Herschel 1842)</option>
-                  <option value="argirotipo">Argirotipo (Nitrato de Plata / Ware-Kachel)</option>
-                  <option value="ferroblend_dev">FerroBlend Revelador (Cobre-Citrato)</option>
-                  <option value="ferroblend_sens">FerroBlend Sensibilizador (A+B)</option>
-                  <option value="ferroblend_toner">FerroBlend Toner Cobre in situ</option>
-                  <option value="albumina">Albúmina Salada (Sandy King)</option>
-                </optgroup>
-                <optgroup label="FIJADORES, BAÑOS Y OTROS">
-                  <option value="f24">Kodak F-24 (Fijador Inodoro Pyro)</option>
-                  <option value="plainhypo">Plain Hypo (Fijador Rápido 30s)</option>
-                  <option value="acidstop">Baño Stop (Ácido Cítrico 1.5%)</option>
-                  <option value="hca">HCA Eliminador Hiposulfito (Sulfito 20%)</option>
-                  <option value="farmer">Reductor de Farmer (Aclarado)</option>
-                  <option value="parodinal">Parodinal (Rodinal Casero / 250ml)</option>
-                  <option value="custom">+ Crear Fórmula Personalizada</option>
-                </optgroup>
-              </select>
-            </div>
-
-            <div>
-              <label class="text-xs sm:text-sm font-semibold text-slate-700 block mb-1">Nombre de la Fórmula</label>
-              <input type="text" id="formula_name" value="Kodak D-76" class="app-input w-full font-sans text-base">
-            </div>
-
-            <div class="grid grid-cols-2 gap-2.5 sm:gap-3 text-center">
-              <div class="p-2 sm:p-2.5 rounded-xl bg-slate-100/60 dark:bg-stone-900/60 border border-slate-200/80 dark:border-red-950/60">
-                <label class="text-xs sm:text-sm font-bold text-slate-800 dark:text-amber-200 block mb-1">Vol. Base</label>
-                <div class="inline-flex items-center justify-center gap-1.5 w-full">
-                  <input type="number" id="formula_base_vol" min="10" step="50" value="1000" class="app-input text-center font-bold text-sm sm:text-base py-1 px-1.5 rounded-lg" style="width: 5.5rem !important; max-width: 5.5rem !important; min-width: 0 !important; font-size: 1rem !important;">
-                  <span class="text-xs sm:text-sm font-mono font-black text-slate-900 dark:text-red-300 select-none">ml</span>
-                </div>
-              </div>
-              <div class="p-2 sm:p-2.5 rounded-xl bg-slate-100/60 dark:bg-stone-900/60 border border-slate-200/80 dark:border-red-950/60">
-                <label class="text-xs sm:text-sm font-bold text-slate-800 dark:text-amber-200 block mb-1">Vol. Final</label>
-                <div class="inline-flex items-center justify-center gap-1.5 w-full">
-                  <input type="number" id="formula_target_vol" min="10" step="25" value="350" class="app-input text-center font-bold text-sm sm:text-base py-1 px-1.5 rounded-lg" style="width: 5.5rem !important; max-width: 5.5rem !important; min-width: 0 !important; font-size: 1rem !important;">
-                  <span class="text-xs sm:text-sm font-mono font-black text-slate-900 dark:text-red-300 select-none">ml</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between items-center mb-1.5">
-                <span class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200">Volúmenes Frecuentes:</span>
-                <span class="text-xs font-mono text-slate-400">Selecciona o desliza</span>
-              </div>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs sm:text-sm font-mono">
-                <button type="button" class="quick-vol-btn py-2 px-2.5 rounded-xl border border-amber-200 bg-amber-50/70 hover:bg-amber-100 text-amber-900 font-bold active:scale-95 transition-all text-center" data-vol="100">100 ml (Alt.)</button>
-                <button type="button" class="quick-vol-btn py-2 px-2.5 rounded-xl border border-amber-200 bg-amber-50/70 hover:bg-amber-100 text-amber-900 font-bold active:scale-95 transition-all text-center" data-vol="250">250 ml (1 Rollo)</button>
-                <button type="button" class="quick-vol-btn py-2 px-2.5 rounded-xl border-2 border-amber-500 bg-amber-500 text-slate-950 font-black shadow-sm active:scale-95 transition-all text-center quick-vol-active" data-vol="350">350 ml (Paterson)</button>
-                <button type="button" class="quick-vol-btn py-2 px-2.5 rounded-xl border border-amber-200 bg-amber-50/70 hover:bg-amber-100 text-amber-900 font-bold active:scale-95 transition-all text-center" data-vol="500">500 ml (2 Rollos)</button>
-                <button type="button" class="quick-vol-btn py-2 px-2.5 rounded-xl border border-amber-200 bg-amber-50/70 hover:bg-amber-100 text-amber-900 font-bold active:scale-95 transition-all text-center" data-vol="1000">1000 ml (1 Litro)</button>
-              </div>
-              <div class="mt-2.5">
-                <input type="range" id="formula_target_slider" min="50" max="1000" step="25" value="350" class="cursor-pointer">
-              </div>
-            </div>
-
-            <button id="copyFormulaBtn" class="w-full py-2.5 px-3 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 flex items-center justify-center gap-1.5 active:scale-98 transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-              Copiar Ficha de Pesaje
-            </button>
-          </div>
-
-          <div class="lg:col-span-7 space-y-3">
-            <div class="flex justify-between items-center">
-              <span class="text-xs sm:text-sm font-semibold text-slate-800">Lista de Componentes / Pesada:</span>
-              <button id="addIngredientBtn" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-900 text-white hover:bg-slate-800 active:scale-95 transition-all flex items-center gap-1">
-                <span>+</span> Agregar Químico
-              </button>
-            </div>
-
-            <div class="overflow-x-auto rounded-xl border border-slate-200 max-h-96">
-              <table class="w-full text-left text-xs sm:text-sm font-mono">
-                <thead class="app-table-th bg-slate-100 sticky top-0 border-b border-slate-200 text-slate-700">
-                  <tr>
-                    <th class="py-2 px-2 text-center w-8">#</th>
-                    <th class="py-2 px-3">Químico / Compuesto</th>
-                    <th class="py-2 px-3 text-right text-amber-500 font-bold min-w-[7.5rem]">CANTIDAD</th>
-                    <th class="py-2 px-2 text-center w-8">✕</th>
-                  </tr>
-                </thead>
-                <tbody id="formula_ingredients_tbody" class="divide-y divide-slate-100"></tbody>
-              </table>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed space-y-1.5">
-              <strong class="font-bold text-amber-900 block flex items-center gap-1.5" id="formula_notes_title">
-                <span>📋</span> Comentarios y Método de Laboratorio:
-              </strong>
-              <div id="formula_notes_body" class="space-y-1 text-slate-700 dark:text-amber-100"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. VISTA: TISSUE DE CARBÓN -->
-    <div id="view-carbon" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Emulsión de Carbón (Glop de Tissue)</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Fórmula 100% editable en componentes y proporciones según tu técnica</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-slate-100 text-slate-800 border border-slate-300 font-semibold">Tissue</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-4 items-start">
-          <div class="lg:col-span-4 space-y-6">
-            <div class="text-center space-y-2">
-              <label class="text-sm font-bold text-slate-800 dark:text-amber-200 block">Volumen Total a Preparar</label>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="carbon_vol" inputmode="decimal" value="250" min="20" max="1000" step="10" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">ml</span>
-              </div>
-              <div class="pt-2">
-                <input type="range" id="carbon_vol_slider" min="50" max="1000" step="10" value="250" class="cursor-pointer w-full">
-              </div>
-            </div>
-
-            <div class="flex gap-2.5 pt-1">
-              <button id="addCarbonCompBtn" class="flex-1 py-2.5 px-3 text-xs sm:text-sm font-semibold rounded-xl bg-slate-900 text-white hover:bg-slate-800 active:scale-95 transition-all shadow-sm">
-                + Agregar Componente
-              </button>
-              <button id="resetCarbonBtn" class="py-2.5 px-3 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 active:scale-95 transition-all" title="Restaurar proporciones base">
-                ↺ Reset
-              </button>
-            </div>
-
-            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed space-y-1.5">
-              <div class="flex items-center gap-1.5 font-bold text-amber-950">
-                <svg class="w-4 h-4 text-amber-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                <span>Parámetro de Sensibilizado:</span>
-              </div>
-              <p>¡Ajustar la gelatina a <strong>pH 4 con Ácido Clorhídrico (HCl)</strong> para sensibilizar con dicromato o CFA sin velo!</p>
-            </div>
-
-            <button id="copyCarbonBtn" class="w-full py-2.5 px-3 text-xs sm:text-sm font-semibold rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 flex items-center justify-center gap-1.5 active:scale-98 transition-all">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-              Copiar Receta de Tissue
-            </button>
-          </div>
-
-          <div class="lg:col-span-8 space-y-2">
-            <span class="text-xs sm:text-sm font-semibold text-slate-800 block mb-1">Componentes y Proporciones Editables:</span>
-            <div class="overflow-x-auto rounded-xl border border-slate-200 max-h-96">
-              <table class="w-full text-left text-xs sm:text-sm font-mono">
-                <thead class="app-table-th bg-slate-100 sticky top-0 border-b border-slate-200 text-slate-700">
-                  <tr>
-                    <th class="py-2.5 px-3">Componente</th>
-                    <th class="py-2.5 px-2 text-right">Proporción (%)</th>
-                    <th class="py-2.5 px-3 text-right text-amber-600 font-bold">CANTIDAD</th>
-                    <th class="py-2.5 px-2 text-center">✕</th>
-                  </tr>
-                </thead>
-                <tbody id="carbon_components_tbody" class="divide-y divide-slate-100"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. VISTA: SENSITOMETRÍA STOUFFER -->
-    <div id="view-stouffer" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100 gap-2">
-          <div class="min-w-0">
-            <h2 class="font-bold text-sm sm:text-base md:text-lg text-slate-900 flex items-center gap-1.5 whitespace-nowrap">
-              <span>⚡</span> Calibración con Escala Stouffer
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-500 truncate sm:whitespace-normal">Determinación del Tiempo Estándar a partir del análisis de la impresión de prueba</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-red-900/20 text-red-700 dark:text-red-300 border border-red-300 dark:border-red-800 font-semibold flex-shrink-0">Dmax</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-4">
-            <div>
-              <label class="text-xs sm:text-sm font-semibold text-slate-700 block mb-1">Modelo de Escala de Transmisión</label>
-              <div class="grid grid-cols-2 gap-3 p-1.5 bg-slate-100 dark:bg-slate-900/90 rounded-2xl border border-slate-300 dark:border-slate-700">
-                <button id="stouffer_btn_31" type="button" class="stouffer-tab-btn py-3 px-3 text-xs sm:text-sm font-black rounded-xl transition-all text-center stouffer-tab-active">
-                  ✓ T3110 (31 Pasos &middot; 0.10D)
-                </button>
-                <button id="stouffer_btn_21" type="button" class="stouffer-tab-btn py-3 px-3 text-xs sm:text-sm font-bold rounded-xl transition-all text-center stouffer-tab-inactive">
-                  T2115 (21 Pasos &middot; 0.15D)
-                </button>
-              </div>
-            </div>
-
-            <div class="text-center">
-              <label class="text-sm font-bold text-slate-800 dark:text-amber-200 block mb-1">Tiempo de Exposición de Prueba</label>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="stouffer_t_prueba" inputmode="decimal" value="600" min="5" max="9999" step="5" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">seg</span>
-              </div>
-            </div>
-
-            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
-              <div class="flex justify-between items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <!-- Formulario de Ingreso -->
+            <div class="p-3 bg-slate-50/60 rounded-xl border border-slate-200 space-y-2.5">
+                <span class="font-bold text-slate-800 block text-xs">Acceso con cuenta autorizada</span>
                 <div>
-                  <label class="text-sm sm:text-base font-bold text-slate-800 dark:text-amber-200 block">Paso con Dmax (Negro Máx.):</label>
-                  <span class="text-xs text-slate-400">Toca el número o desliza la barra (Pasos 1 a 4)</span>
+                    <label class="text-[11px] text-slate-600 font-semibold block mb-1">Correo de Gmail:</label>
+                    <input type="email" id="loginEmailInput" value="iipabloii@gmail.com" class="app-input w-full text-xs sm:text-sm py-1.5 px-2.5">
                 </div>
-                <div class="flex items-center">
-                  <span id="stouffer_step_label" class="text-xl sm:text-2xl font-mono font-black text-amber-500 min-w-[85px] text-center px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-xl">Paso 3</span>
-                </div>
-              </div>
-
-              <div class="relative px-0 pt-2 pb-1">
-                <div id="stouffer_ticks_ruler" class="w-full mb-3 relative h-12 select-none"></div>
-                <input type="range" id="stouffer_step" min="1" max="4" value="2" step="1" class="cursor-pointer w-full m-0 p-0">
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <div class="app-result-box p-4 text-white rounded-xl space-y-3">
-              <div class="flex items-baseline justify-between">
-                <span class="text-sm sm:text-base text-slate-200 font-bold">Tiempo estándar (Dmax):</span>
-                <div class="text-right">
-                  <span id="stouffer_res_t" class="text-3xl sm:text-4xl font-black font-mono text-amber-400">150.0</span>
-                  <span class="text-base font-mono text-slate-300 ml-1">seg</span>
-                </div>
-              </div>
-              <div id="stouffer_pictorico_row" class="flex items-baseline justify-between border-t border-slate-800 pt-2.5">
-                <span class="text-sm sm:text-base text-slate-200 font-bold">Con pictórico OHP aumentar tiempo a:</span>
-                <div class="text-right">
-                  <span id="stouffer_res_pic" class="text-2xl sm:text-3xl font-extrabold font-mono text-amber-300">212.2</span>
-                  <span class="text-sm font-mono text-slate-300 ml-1">seg</span>
-                </div>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-2 text-sm sm:text-base">
-                <span class="text-slate-300 font-medium">Transmisión del paso:</span>
-                <span id="stouffer_res_trans" class="font-mono text-slate-100 font-bold">25.0 %</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-2 text-sm sm:text-base">
-                <span class="text-slate-300 font-medium">Densidad óptica aproximada:</span>
-                <span id="stouffer_res_dens" class="font-mono text-slate-100 font-bold">0.65 D</span>
-              </div>
+                <button type="button" id="loginActionBtn" class="w-full py-1.5 px-3 text-xs font-bold rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 transition-all">
+                    Ingresar al Laboratorio
+                </button>
             </div>
 
-            <div class="max-h-64 overflow-y-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left text-xs sm:text-sm font-mono">
-                <thead class="app-table-th bg-slate-100 sticky top-0 border-b border-slate-200 text-slate-700">
-                  <tr>
-                    <th class="py-2 px-3">Paso</th>
-                    <th class="py-2 px-2.5">Densidad</th>
-                    <th class="py-2 px-2.5">% Transm.</th>
-                    <th class="py-2 px-3 text-right">Tiempo Dmax</th>
-                  </tr>
-                </thead>
-                <tbody id="stouffer_tbody" class="divide-y divide-slate-100"></tbody>
-              </table>
+            <!-- Formulario de Solicitud de Registro -->
+            <div class="p-3 bg-slate-50/60 rounded-xl border border-slate-200 space-y-2.5">
+                <span class="font-bold text-slate-800 block text-xs">Solicitar Nuevo Acceso</span>
+                <div>
+                    <label class="text-[11px] text-slate-600 font-semibold block mb-1">Tu Nombre:</label>
+                    <input type="text" id="regNameInput" placeholder="Nombre completo" class="app-input w-full text-xs sm:text-sm py-1.5 px-2.5">
+                </div>
+                <div>
+                    <label class="text-[11px] text-slate-600 font-semibold block mb-1">Tu Correo:</label>
+                    <input type="email" id="regEmailInput" placeholder="correo@gmail.com" class="app-input w-full text-xs sm:text-sm py-1.5 px-2.5">
+                </div>
+                <button type="button" id="regActionBtn" class="w-full py-1.5 px-3 text-xs font-bold rounded-lg bg-slate-800 text-white hover:bg-slate-900 transition-all">
+                    Enviar Solicitud al Admin
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. VISTA: TIRAS DE PRUEBA POR F-STOP (GENE NOCON) -->
-    <div id="view-tiras" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Tiras de Prueba por F-Stop (Gene Nocon)</h2>
-            <p class="text-xs sm:text-sm text-slate-500">calculadora de tiempos de exposición para tiras de prueba con gradacion por f-stop</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-amber-50 text-amber-800 border border-amber-200 font-semibold">Nocon</span>
         </div>
 
-        <div class="mt-3.5 p-1 bg-slate-100 rounded-xl flex border border-slate-200 text-xs sm:text-sm">
-          <button id="tira_mode_max" class="flex-1 py-1.5 font-bold rounded-lg bg-slate-900 text-white shadow-sm transition-all text-center">
-            Base = Máxima Exposición
-          </button>
-          <button id="tira_mode_min" class="flex-1 py-1.5 font-medium rounded-lg text-slate-600 hover:text-slate-900 transition-all text-center">
-            Base = Mínima Exposición
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-4">
-            <div class="grid grid-cols-2 gap-3 text-center items-center">
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Tiempo Base</label>
-                <div class="flex justify-center items-center gap-1.5">
-                  <input type="number" id="tira_base" inputmode="decimal" value="30.0" step="1" min="1" class="app-input w-20 text-center font-bold">
-                  <span class="text-xs font-mono font-bold text-slate-400">seg</span>
-                </div>
-              </div>
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Intervalo</label>
-                <select id="tira_intervalo" class="app-input w-full text-xs sm:text-sm font-medium">
-                  <option value="0.166667">1/6 F-Stop (fino)</option>
-                  <option value="0.333333" selected>1/3 F-Stop (estándar)</option>
-                  <option value="0.5">1/2 F-Stop (amplio)</option>
-                  <option value="1.0">1 Full Stop</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed space-y-1">
-              <strong class="font-bold block text-amber-900">Procedimiento en el cuarto oscuro:</strong>
-              <span id="tira_explicacion">
-                1. Exponer toda la tira descubierta al tiempo inicial general (Paso 1).<br>
-                2. Ir cubriendo con el cartón franja por franja hacia la derecha y disparar cada tiempo parcial incremental. La última franja (la más expuesta) queda destapada en todos los pasos y suma en total exactamente el Tiempo Base.
-              </span>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <div class="flex justify-between items-center pb-1">
-              <span class="text-xs sm:text-sm font-semibold text-slate-800">Guía de Disparo con Cartón:</span>
-              <span class="text-xs font-mono text-slate-500 font-semibold" id="tira_resumen_franjas">6 Franjas</span>
-            </div>
-            <div id="tira_cards_container" class="space-y-2 max-h-[460px] overflow-y-auto pr-1"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. VISTA: CORRECCIÓN DE TIEMPO EN AMPLIACIONES -->
-    <div id="view-ampliacion" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Tiempo/ampliación</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Ajuste de exposición por ley del cuadrado inverso al cambiar la escala del cabezal</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-purple-50 text-purple-800 border border-purple-200 font-semibold">(C/B)²·A</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-4">
-            <div class="text-center">
-              <label class="text-xs sm:text-sm font-bold text-slate-800 dark:text-amber-200 block mb-1">(A) Tiempo de Exposición Original</label>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="amp_t_orig" inputmode="decimal" value="7" step="1" min="1" max="999" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">seg</span>
-              </div>
-              <input type="range" id="amp_t_slider" min="1" max="60" step="1" value="7" class="cursor-pointer mt-2">
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 text-center">
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Longitud inicial</label>
-                <div class="flex justify-center items-center gap-1.5">
-                  <input type="number" id="amp_dim_orig" inputmode="decimal" value="10" step="any" min="1" max="500" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                  <span class="text-base font-mono font-extrabold text-slate-400 select-none">cm</span>
-                </div>
-                <input type="range" id="amp_b_slider" min="5" max="100" step="5" value="10" class="cursor-pointer mt-2" title="Crece de a 5 cm">
-              </div>
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Longitud final</label>
-                <div class="flex justify-center items-center gap-1.5">
-                  <input type="number" id="amp_dim_fin" inputmode="decimal" value="20" step="any" min="1" max="500" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                  <span class="text-base font-mono font-extrabold text-slate-400 select-none">cm</span>
-                </div>
-                <input type="range" id="amp_c_slider" min="5" max="100" step="5" value="20" class="cursor-pointer mt-2" title="Crece de a 5 cm">
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <div class="app-result-box p-5 sm:p-6 text-white rounded-2xl space-y-4 shadow-xl border-2 border-amber-500/50">
-              <div class="border-b border-slate-800 pb-3">
-                <span class="text-xs sm:text-sm uppercase tracking-wider text-amber-400 font-bold block mb-1">Tiempo Corregido de Exposición</span>
-                <div class="flex items-baseline justify-between">
-                  <span id="amp_res_seg" class="text-6xl sm:text-7xl md:text-8xl font-black font-mono text-amber-500 text-lab-highlight leading-none">28.0</span>
-                  <span class="text-xl sm:text-2xl font-mono text-slate-300 font-bold">seg</span>
-                </div>
-              </div>
-              
-              <div class="grid grid-cols-2 gap-3 pt-1">
-                <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                  <span class="text-xs text-slate-400 block mb-0.5">Factor de Aumento:</span>
-                  <span id="amp_res_factor" class="text-lg sm:text-xl font-mono font-bold text-slate-100">4.00x</span>
-                </div>
-                <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                  <span class="text-xs text-slate-400 block mb-0.5">Compensación:</span>
-                  <span id="amp_res_stops" class="text-lg sm:text-xl font-mono font-bold text-amber-300">+2.00 stops</span>
-                </div>
-              </div>
-
-              <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs sm:text-sm text-amber-200 leading-snug">
-                💡 <strong>Ley del Cuadrado Inverso:</strong> T₂ = T₁ &middot; (Lado Final / Lado Inicial)².<br>
-                Al duplicar el tamaño del lado (10 &rarr; 20 cm), la superficie se cuadruplica y requiere exactamente 4 veces más tiempo (+2 stops).
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. VISTA: MATRIZ DE TIEMPOS 1/6 DE F-STOP -->
-    <div id="view-fstoptimes" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Tiempos de Expo. según F-Stop</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Cálculo de tiempos de exposición +/- 2 f-stops en intervalos de 1/6</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-slate-100 text-slate-800 border border-slate-200 font-semibold">2^(n/6)</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-4">
-            <div class="text-center">
-              <label class="text-xs sm:text-sm font-bold text-slate-800 dark:text-amber-200 block mb-1">Tiempo Base a Calibrar</label>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="fstopmatrix_base" inputmode="decimal" value="15" min="0.5" max="999" step="0.5" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">seg</span>
-              </div>
-            </div>
-
-            <div class="p-4 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
-              <div class="flex justify-between items-center">
-                <span class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200">Ajuste Rápido del Tiempo Base:</span>
-                <span id="fstop_quick_val" class="text-base font-mono font-black text-amber-500">15.0 s</span>
-              </div>
-              <input type="range" id="fstopmatrix_slider" min="1" max="60" step="0.5" value="15" class="cursor-pointer">
-            </div>
-          </div>
-
-          <div class="max-h-80 overflow-y-auto rounded-xl border border-slate-200">
-            <table class="w-full text-left text-xs sm:text-sm font-mono">
-              <thead class="app-table-th bg-slate-100 sticky top-0 border-b border-slate-200 text-slate-700">
-                <tr>
-                  <th class="py-2.5 px-3">Fracción Stop</th>
-                  <th class="py-2.5 px-2.5 text-center">Tono Gris</th>
-                  <th class="py-2.5 px-2.5 text-center">Zona (Adams)</th>
-                  <th class="py-2.5 px-3 text-right">Tiempo</th>
-                </tr>
-              </thead>
-              <tbody id="fstopmatrix_tbody" class="divide-y divide-slate-100"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 9. VISTA: COMPENSACIÓN DE FUELLE & MACRO -->
-    <div id="view-fuelle" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Compensación por caída de luz en fuelle</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Ajuste de exposición por pérdida de luz al enfocar de cerca o macrofotografía</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">(E/F)²</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-4">
-            <div class="space-y-1.5 text-center">
-              <label class="text-sm font-bold text-slate-800 dark:text-amber-200 block">Focal</label>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="fuelle_focal" inputmode="decimal" value="135" min="20" max="600" step="5" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">mm</span>
-              </div>
-              <div class="pt-1">
-                <input type="range" id="fuelle_focal_slider" min="65" max="360" step="5" value="135" class="cursor-pointer w-full">
-              </div>
-              <div class="flex flex-wrap justify-center gap-2 pt-1">
-                <button type="button" class="quick-focal-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-focal="75">75mm</button>
-                <button type="button" class="quick-focal-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-focal="90">90mm</button>
-                <button type="button" class="quick-focal-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all quick-focal-active" data-focal="135">135mm</button>
-                <button type="button" class="quick-focal-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-focal="150">150mm</button>
-                <button type="button" class="quick-focal-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-focal="210">210mm</button>
-                <button type="button" class="quick-focal-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-focal="300">300mm</button>
-              </div>
-            </div>
-
-            <div class="space-y-1.5 text-center">
-              <label class="text-sm font-bold text-slate-800 dark:text-amber-200 block">Factor de Magnificación</label>
-              <div class="flex justify-center items-center gap-2">
-                <input type="number" id="fuelle_mag" inputmode="decimal" value="1.0" min="0.05" max="10" step="0.05" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                <span class="text-base font-mono font-extrabold text-slate-400 select-none">x</span>
-              </div>
-              <div class="pt-1">
-                <input type="range" id="fuelle_mag_slider" min="0.1" max="3.0" step="0.05" value="1.0" class="cursor-pointer w-full">
-              </div>
-              <div class="flex flex-wrap justify-center gap-2 pt-1">
-                <button type="button" class="quick-mag-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-mag="0.25">1:4 (0.25x)</button>
-                <button type="button" class="quick-mag-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-mag="0.5">1:2 (0.5x)</button>
-                <button type="button" class="quick-mag-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-amber-400 bg-amber-100 text-amber-900 active:scale-95 transition-all quick-mag-active" data-mag="1.0">1:1 (Macro)</button>
-                <button type="button" class="quick-mag-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-mag="1.5">1.5x</button>
-                <button type="button" class="quick-mag-btn px-2.5 py-1 text-xs font-mono font-bold rounded-lg border border-slate-200 bg-slate-100 text-slate-700 active:scale-95 transition-all" data-mag="2.0">2.0x</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 text-center pt-1 border-t border-slate-100">
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Fuelle Máx.</label>
-                <div class="flex justify-center items-center gap-1.5">
-                  <input type="number" id="fuelle_max" inputmode="decimal" value="500" min="50" max="9999" step="10" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                  <span class="text-xs font-mono font-bold text-slate-400">mm</span>
-                </div>
-              </div>
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Tiempo Medido</label>
-                <div class="flex justify-center items-center gap-1.5">
-                  <input type="number" id="fuelle_t_orig" inputmode="decimal" value="2.0" min="0.01" max="999" step="0.1" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                  <span class="text-xs font-mono font-bold text-slate-400">seg</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="app-result-box p-5 text-white rounded-2xl space-y-3.5 shadow-xl border-2 border-emerald-500/50">
-              <div class="border-b border-slate-800 pb-2.5">
-                <span class="text-xs uppercase tracking-wider text-amber-400 font-bold block mb-0.5">Tiempo Corregido con Fuelle</span>
-                <div class="flex items-baseline justify-between">
-                  <span id="fuelle_res_t" class="text-4xl sm:text-5xl font-black font-mono text-amber-400 text-lab-highlight">8.00</span>
-                  <span class="text-xl font-mono text-slate-300 font-bold">seg</span>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2.5 pt-1">
-                <div class="p-2.5 bg-slate-800/80 rounded-xl border border-slate-700">
-                  <span class="text-[11px] text-slate-400 block mb-0.5">Compensación:</span>
-                  <span id="fuelle_res_stops" class="text-sm sm:text-base font-mono font-bold text-amber-300">+2.00 stops (4.00x)</span>
-                </div>
-                <div class="p-2.5 bg-slate-800/80 rounded-xl border border-slate-700">
-                  <span class="text-[11px] text-slate-400 block mb-0.5">Extensión de fuelle:</span>
-                  <span id="fuelle_res_ext" class="text-sm sm:text-base font-mono font-bold text-slate-100">270 mm</span>
-                </div>
-              </div>
-
-              <div class="p-3 bg-slate-800/90 rounded-xl border border-slate-700/80 text-center">
-                <span class="text-xs text-slate-300 block mb-1">Distancia mínima de enfoque:</span>
-                <span id="fuelle_res_dist" class="text-2xl sm:text-3xl font-black font-mono text-amber-300">185 mm</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <span class="text-xs sm:text-sm font-semibold text-slate-800 block mb-2">Tabla de Magnificación & Pérdida de Luz:</span>
-            <div class="overflow-x-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left text-xs sm:text-sm font-mono">
-                <thead class="app-table-th bg-slate-100 border-b border-slate-200 text-slate-700">
-                  <tr>
-                    <th class="py-2 px-3">Escala</th>
-                    <th class="py-2 px-2.5">Fuelle</th>
-                    <th class="py-2 px-2.5">Compensación</th>
-                    <th class="py-2 px-3 text-right">Tiempo</th>
-                  </tr>
-                </thead>
-                <tbody id="fuelle_std_tbody" class="divide-y divide-slate-100"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 10. VISTA: RESOLUCIÓN DIGITALIZACIÓN & GRAN FORMATO 4x5" -->
-    <div id="view-digital" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Resolución de Digitalización & Formatos</h2>
-            <p class="text-xs sm:text-sm text-slate-500">Cálculo de ppp según impresión y asistente para digitalizar película con sensor digital</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-violet-50 text-violet-800 border border-violet-200 font-semibold">DPI / 4x5"</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="space-y-3.5">
-            <div>
-              <label class="text-xs sm:text-sm font-semibold text-slate-700 block mb-1">Preset de Formato de Película</label>
-              <div class="grid grid-cols-4 gap-1.5 text-xs font-mono font-medium">
-                <button class="digi-preset py-2 rounded-xl border border-slate-900 bg-slate-900 text-white" data-w="36" data-h="24">35mm</button>
-                <button class="digi-preset py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800" data-w="56" data-h="56">6x6</button>
-                <button class="digi-preset py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800" data-w="67" data-h="56">6x7</button>
-                <button class="digi-preset py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800" data-w="125.3" data-h="99.5">4x5"</button>
-              </div>
-            </div>
-
-            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-center">
-              <span class="text-xs text-slate-500 dark:text-amber-200/80 font-medium">Dimensiones del Negativo:</span>
-              <div id="digi_format_info" class="text-sm font-mono font-bold text-slate-800 dark:text-amber-300 mt-0.5">4x5" (99.5 &times; 125.3 mm)</div>
-              <input type="hidden" id="digi_neg_corto" value="99.5">
-              <input type="hidden" id="digi_neg_largo" value="125.3">
-            </div>
-
-            <div class="grid grid-cols-2 gap-4 text-center">
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Copia Largo</label>
-                <div class="flex justify-center items-center gap-1">
-                  <input type="number" id="digi_imp_largo" inputmode="decimal" value="60" min="1" max="999" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                  <span class="text-xs font-mono font-bold text-slate-400">cm</span>
-                </div>
-              </div>
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Salida</label>
-                <div class="flex justify-center items-center gap-1">
-                  <input type="number" id="digi_imp_dpi" inputmode="decimal" value="300" min="50" max="9999" step="50" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-                  <span class="text-xs font-mono font-bold text-slate-400">ppp</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="app-result-box p-4 text-white rounded-xl space-y-2 mt-6 sm:mt-7 shadow-md">
-              <div class="flex items-baseline justify-between">
-                <span class="text-xs sm:text-sm text-slate-300 font-medium">Resolución de Escaneo Requerida:</span>
-                <div class="text-right">
-                  <span id="digi_res_ppp" class="text-2xl sm:text-3xl font-bold font-mono text-amber-400">1437</span>
-                  <span class="text-xs sm:text-sm font-mono text-slate-300 ml-1">ppp</span>
-                </div>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-2 text-xs sm:text-sm">
-                <span class="text-slate-300">Positivo Proporcional:</span>
-                <span id="digi_res_imp_size" class="font-mono text-slate-100 font-bold">47.6 &times; 60.0 cm</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-2 text-xs sm:text-sm">
-                <span class="text-slate-300">Dimensiones Archivo:</span>
-                <span id="digi_res_pixels" class="font-mono text-slate-100 font-bold">7087 &times; 5627 px</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-2 text-xs sm:text-sm">
-                <span class="text-slate-300">Megapíxeles Totales:</span>
-                <span id="digi_res_mp" class="font-mono text-amber-400 font-black text-xl sm:text-2xl">39.9 MP</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-2xl border border-amber-300/60 bg-amber-50/60 dark:bg-slate-900/80 space-y-3.5">
-            <div class="border-b border-amber-200/80 pb-2">
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 flex items-center gap-1.5 text-amber-900">
-                <span>📷</span> Digitalización con Cámara Digital
-              </h3>
-              <p class="text-xs text-slate-600">Compara un disparo único vs mosaico de tomas múltiples (stitching)</p>
-            </div>
-
-            <div class="space-y-3">
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Megapíxeles Sensor 24x36</label>
-                <select id="stitch_mp_sensor" class="app-input w-full text-xs sm:text-sm font-semibold py-2 px-3">
-                  <option value="24" selected>24 MP (6000 &times; 4000)</option>
-                  <option value="33">33 MP (7008 &times; 4672)</option>
-                  <option value="45">45 MP (8256 &times; 5504)</option>
-                  <option value="50">50 MP (8688 &times; 5792)</option>
-                  <option value="61">61 MP (9504 &times; 6336)</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Estrategia de Captura</label>
-                <select id="stitch_mode" class="app-input w-full text-xs sm:text-sm font-semibold py-2 px-3">
-                  <option value="single">Toma Única (Todo el 4x5)</option>
-                  <option value="2x3" selected>Mosaico 2 &times; 3 (6 Fotos con 30% solapamiento)</option>
-                  <option value="3x4">Mosaico 3 &times; 4 (12 Fotos con 30% solapamiento)</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="app-result-box p-3.5 rounded-xl text-white space-y-2 text-xs sm:text-sm mt-6 sm:mt-7 shadow-md">
-              <div class="flex justify-between items-center">
-                <span class="text-slate-300">Resolución Final Ensamblada:</span>
-                <span id="stitch_res_mp" class="font-mono text-base font-bold text-amber-400">~105 MP</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-1.5">
-                <span class="text-slate-300">Resolución en el Negativo:</span>
-                <span id="stitch_res_dpi" class="font-mono text-slate-100 font-bold">~2950 ppp ópticos</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-1.5">
-                <span class="text-slate-300">Ampliación Máx. a 300 dpi:</span>
-                <span id="stitch_res_print" class="font-mono text-slate-100 font-bold">100 &times; 125 cm</span>
-              </div>
-              <div class="flex justify-between items-center border-t border-slate-800 pt-1.5">
-                <span class="text-slate-300">Escala / Magnificación:</span>
-                <span id="stitch_res_scale" class="font-mono text-amber-300 font-bold">1:1.3 (macro)</span>
-              </div>
-            </div>
-
-            <div class="text-[11px] text-slate-600 dark:text-slate-300 leading-normal space-y-1 bg-white/70 dark:bg-slate-800/80 p-2.5 rounded-xl border border-amber-200/50">
-              <p><strong>Claves técnicas de toma:</strong></p>
-              <p>&bull; <strong>Toma Única:</strong> Rápida pero la resolución en el negativo ronda ~1300 ppp (adecuada para copias hasta 40&times;50 cm).</p>
-              <p>&bull; <strong>Mosaico 2&times;3 (6 tomas con 30% solapamiento):</strong> Estándar profesional absoluto. Resuelve todo el grano de una placa 4x5", entregando más de 100 Megapíxeles reales sin distorsión de bordes usando un objetivo macro a f/5.6-f/8.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 11. VISTA: TAMAÑO DE PAPEL SEGÚN FORMATO -->
-    <div id="view-papel" class="calc-view hidden space-y-4">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900">Tamaño de Papel según Formato</h2>
-            <p class="text-xs sm:text-sm text-slate-500">dimensiones de la impresión según tamaño del papel y relación de aspecto del original</p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-slate-100 text-slate-800 border border-slate-200 font-semibold">Proporción</span>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-4 items-start">
-          <div class="text-center">
-            <label class="text-xs sm:text-sm font-bold text-slate-700 dark:text-amber-200 block mb-1">Longitud del Lado Largo del Papel</label>
-            <div class="flex justify-center items-center gap-2">
-              <input type="number" id="papel_lado" inputmode="decimal" value="30" min="5" max="200" step="0.5" class="app-input w-20 text-center text-base sm:text-lg font-bold">
-              <span class="text-base font-mono font-extrabold text-slate-400 select-none">cm</span>
-            </div>
-            <input type="range" id="papel_lado_slider" min="10" max="60" step="1" value="30" class="cursor-pointer mt-2">
-          </div>
-
-          <div class="space-y-2.5">
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-              <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-red-300">Formato 6&times;6 (Cuadrado 1:1)</span>
-                <span class="text-xs font-mono text-slate-500">56&times;56 mm</span>
-              </div>
-              <div class="flex items-baseline justify-between pt-0.5">
-                <span class="text-xs text-slate-500 dark:text-slate-400">Impresión:</span>
-                <div class="text-right">
-                  <span class="text-base sm:text-lg font-mono font-extrabold text-amber-500"><span id="papel_66_corto">30.00</span> &times; <span id="papel_66_largo">30.00</span> cm</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-              <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-red-300">Formato 35mm (Proporción 2:3)</span>
-                <span class="text-xs font-mono text-slate-500">24&times;36 mm</span>
-              </div>
-              <div class="flex items-baseline justify-between pt-0.5">
-                <span class="text-xs text-slate-500 dark:text-slate-400">Impresión:</span>
-                <div class="text-right">
-                  <span class="text-base sm:text-lg font-mono font-extrabold text-amber-500"><span id="papel_35_corto">20.00</span> &times; <span id="papel_35_largo">30.00</span> cm</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-              <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-red-300">Formato 6&times;7 (Proporción Ideal)</span>
-                <span class="text-xs font-mono text-slate-500">56&times;67 mm</span>
-              </div>
-              <div class="flex items-baseline justify-between pt-0.5">
-                <span class="text-xs text-slate-500 dark:text-slate-400">Impresión:</span>
-                <div class="text-right">
-                  <span class="text-base sm:text-lg font-mono font-extrabold text-amber-500"><span id="papel_67_corto">25.07</span> &times; <span id="papel_67_largo">30.00</span> cm</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-              <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-red-300">Formato 4&times;5 Pulgadas (Gran Formato)</span>
-                <span class="text-xs font-mono text-slate-500">99.5&times;125.3 mm</span>
-              </div>
-              <div class="flex items-baseline justify-between pt-0.5">
-                <span class="text-xs text-slate-500 dark:text-slate-400">Impresión:</span>
-                <div class="text-right">
-                  <span class="text-base sm:text-lg font-mono font-extrabold text-amber-500"><span id="papel_45_corto">23.82</span> &times; <span id="papel_45_largo">30.00</span> cm</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 12. VISTA: DIAL CONCÉNTRICO Y TABLA DE F-STOPS -->
-    <div id="view-fstops" class="calc-view hidden space-y-5">
-      <div class="app-card rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm transition-colors duration-150 space-y-5">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <div>
-            <h2 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white flex items-center gap-2">
-              <span>🔘</span> Dial Concéntrico de Escalas F-Stop
-            </h2>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-red-300">
-              Tres círculos concéntricos alineados por ángulo de coincidencia geométrica (&radic;2)
-            </p>
-          </div>
-          <span class="px-2.5 py-1 text-xs font-mono rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 dark:bg-red-900 dark:text-white font-black">&radic;2 Concéntrico</span>
-        </div>
-
-        <div class="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-xs sm:text-sm font-mono font-bold pt-1">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500 text-amber-900 dark:text-amber-300">
-            <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> Círculo Interior: 1 Paso (Full)
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500 text-emerald-900 dark:text-emerald-300">
-            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Intermedio: 1/2 Paso
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-500/15 border border-blue-500 text-blue-900 dark:text-red-300">
-            <span class="w-3 h-3 rounded-full bg-blue-500 dark:bg-red-500 inline-block"></span> Exterior: 1/3 Paso
-          </span>
-        </div>
-
-        <div class="flex flex-col items-center justify-center pt-2">
-          <div class="w-full max-w-[460px] aspect-square relative select-none">
-            <svg id="fstopDialSvg" class="w-full h-full" viewBox="0 0 500 500"></svg>
-          </div>
-          <div id="fstopDialFeedback" class="mt-3 p-3 rounded-xl bg-slate-100 dark:bg-stone-900 border border-slate-300 dark:border-red-900 text-center font-mono text-xs sm:text-sm max-w-md w-full">
-            Toca un punto del dial para inspeccionar la coincidencia angular de diafragmas
-          </div>
-        </div>
-
-        <div class="pt-3 border-t border-slate-200 dark:border-red-950">
-          <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-red-300 block mb-2">Tabla Detallada de Diafragmas Coincidentes:</span>
-          <div class="max-h-64 overflow-y-auto rounded-xl border border-slate-200">
-            <table class="w-full text-left text-xs sm:text-sm font-mono">
-              <thead class="app-table-th bg-slate-100 sticky top-0 border-b border-slate-200 text-slate-700">
-                <tr>
-                  <th class="py-2 px-3 text-amber-700 dark:text-amber-400">1 Paso (Full)</th>
-                  <th class="py-2 px-3 text-emerald-700 dark:text-emerald-400">1/2 Paso</th>
-                  <th class="py-2 px-3 text-blue-700 dark:text-red-400">1/3 Paso</th>
-                </tr>
-              </thead>
-              <tbody id="fstops_tbody" class="divide-y divide-slate-100"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer de Créditos y Versión -->
-    <footer class="w-full max-w-5xl mx-auto px-4 py-6 mt-8 text-center border-t border-slate-700/60 text-xs sm:text-sm text-slate-400">
-      <p class="font-medium">Desarrollado por <span class="font-bold text-slate-200">Pablo J. Martinez</span> &middot; <a href="mailto:iipabloii@gmail.com" class="underline hover:text-amber-400 transition-colors">iipabloii@gmail.com</a> &middot; Versión Test 1.0 &middot; <button id="infoBtn" type="button" class="underline hover:text-amber-400 transition-colors ml-1 cursor-pointer">Ayuda / Guardar en Celular</button></p>
-    </footer>
-
-    <!-- PIE DE PÁGINA COMPACTO ENMARCADO CON ESTILO Y COLOR DE CABECERA + CHAT DE USUARIOS GMAIL -->
-    <footer id="authFooterSection" class="app-header w-full border-t-2 border-b-2 shadow-xl relative overflow-hidden mt-6 select-none rounded-2xl">
-      <div class="header-divider-strip w-full relative z-20"></div>
-
-      <div class="w-full max-w-5xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 relative z-10 space-y-2.5 text-xs text-white">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/15 dark:border-red-950 pb-1.5">
-          <div class="flex items-center gap-1.5">
-            <span class="text-sm">🔐</span>
-            <span class="font-black text-xs sm:text-sm tracking-wide text-white dark:text-red-400">Calcu-labo</span>
-            <span class="text-[10px] opacity-80 hidden sm:inline">&middot; Laboratorio &amp; Red Colaborativa</span>
-          </div>
-
-          <div id="footerSessionBar" class="inline-flex items-center gap-1.5">
-            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-black/30 border border-white/20 dark:border-red-900 font-mono text-[10px] text-white">
-              <span class="text-emerald-400 dark:text-red-400 font-black">&bull;</span>
-              <span id="currentUserEmailText" class="font-bold truncate max-w-[140px]">Sesión Activa</span>
-              <div id="currentUserBadge" class="hidden"></div>
-            </div>
-            <button type="button" id="adminManageBtn" class="hidden px-2 py-0.5 text-[10px] font-mono font-bold rounded-lg border border-amber-400/40 bg-amber-950/70 text-amber-200 hover:bg-amber-900 active:scale-95 cursor-pointer" title="Gestionar usuarios">
-              🔑 Admin
+        <!-- Estado de Sesión y Salir -->
+        <div id="sessionStatusBox" class="p-2.5 bg-emerald-900/10 rounded-xl border border-emerald-500/30 flex items-center justify-between text-xs font-medium">
+            <span id="sessionStatusText" class="text-slate-700">Sesión activa como: <strong class="text-slate-900">iipabloii@gmail.com</strong> (Admin)</span>
+            <button type="button" id="logoutBtn" class="py-1 px-2.5 rounded-lg bg-slate-200 text-slate-800 hover:bg-slate-300 font-bold transition-all text-xs">
+                Salir
             </button>
-            <button type="button" id="logoutBtn" class="px-2 py-0.5 text-[10px] font-bold rounded-lg border border-white/20 bg-black/30 hover:bg-rose-950/80 text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1" title="Cerrar sesión">
-              <span>🚪</span> Salir
-            </button>
-          </div>
         </div>
+    </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2.5 items-start">
-          <div class="lg:col-span-5 space-y-2">
-            <div class="footer-subbox p-2.5 rounded-xl space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-black text-[11px] uppercase tracking-wider text-emerald-200 dark:text-red-300">Acceso Gmail</span>
-                <span class="text-[10px] opacity-75">Sesión Segura</span>
-              </div>
-              <div class="flex gap-1.5">
-                <input type="email" id="footerLoginEmail" placeholder="usuario@gmail.com" class="app-input flex-1 font-mono text-xs">
-                <button type="button" id="footerLoginBtn" class="py-1 px-2.5 rounded-lg font-bold text-[11px] bg-emerald-600 hover:bg-emerald-500 dark:bg-red-700 dark:hover:bg-red-600 text-white shadow-xs active:scale-98 cursor-pointer whitespace-nowrap">
-                  Ingresar
-                </button>
-              </div>
-              <div id="footerLoginMsg" class="text-[11px] font-bold p-1.5 rounded-lg border hidden leading-tight"></div>
-            </div>
+</main>
 
-            <div id="registrationCard" class="footer-subbox p-2.5 rounded-xl space-y-1.5">
-              <span class="font-black text-[11px] uppercase tracking-wider text-emerald-200 dark:text-red-300 block">Solicitar Registro</span>
-              <div class="grid grid-cols-2 gap-1.5">
-                <input type="text" id="regNameInput" placeholder="Tu Nombre" class="app-input w-full text-xs">
-                <input type="email" id="regEmailInput" placeholder="tu_cuenta@gmail.com" class="app-input w-full font-mono text-xs">
-              </div>
-              <div class="flex gap-1.5">
-                <input type="text" id="regNoteInput" placeholder="Motivo o Laboratorio" class="app-input flex-1 text-xs">
-                <button type="button" id="sendRegistrationBtn" class="py-1 px-2.5 rounded-lg font-bold text-[11px] bg-emerald-800 hover:bg-emerald-700 dark:bg-red-900 text-white border border-white/15 shadow-xs active:scale-98 cursor-pointer flex items-center justify-center gap-1 whitespace-nowrap">
-                  <span>✉️</span> Solicitar
-                </button>
-              </div>
-              <div id="regFeedbackMsg" class="text-[11px] font-bold p-1.5 rounded-lg border hidden leading-tight"></div>
-            </div>
-          </div>
+<script>
+const bodyEl = document.body;
+const safelightToggle = document.getElementById('safelightToggle');
+const safelightIcon = document.getElementById('safelightIcon');
+const safelightText = document.getElementById('safelightText');
 
-          <div class="lg:col-span-7">
-            <div class="footer-subbox p-2.5 rounded-xl space-y-2">
-              <div class="flex items-center justify-between border-b border-white/10 dark:border-red-950/60 pb-1">
-                <div class="flex items-center gap-1.5 font-black text-[11px] uppercase tracking-wider text-emerald-200 dark:text-red-300">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400 dark:bg-red-400 animate-pulse"></span>
-                  <span>Usuarios Conectados &amp; Chat</span>
-                </div>
-                <div id="onlineUsersChips" class="flex items-center gap-1 text-[10px] font-mono">
-                  <span class="px-1.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 dark:bg-red-950 dark:border-red-800 dark:text-red-300">Admin (En línea)</span>
-                  <span class="px-1.5 py-0.5 rounded bg-black/30 border border-white/15 text-slate-200 dark:text-red-400">labo.b-n</span>
-                </div>
-              </div>
+safelightToggle.addEventListener('click', () => {
+    bodyEl.classList.toggle('safelight-mode');
+    const isLabo = bodyEl.classList.contains('safelight-mode');
+    safelightIcon.textContent = isLabo ? '🔦' : '🔴';
+    safelightText.textContent = isLabo ? 'Modo Día' : 'Modo Labo';
+});
 
-              <div id="labChatMessages" class="h-24 overflow-y-auto space-y-1 pr-1 font-mono text-[11px]">
-                <div class="p-1.5 rounded-lg bg-black/25 border border-white/5 space-y-0.5">
-                  <div class="flex justify-between text-[10px] text-emerald-300 dark:text-red-400 font-bold">
-                    <span>Admin Labo</span>
-                    <span class="opacity-60">18:40</span>
-                  </div>
-                  <div class="text-[11px] text-white/90 dark:text-red-200">Bienvenidos al laboratorio digital y analógico. Sesión abierta.</div>
-                </div>
-              </div>
+const c1Input = document.getElementById('stock_c1');
+const v2Input = document.getElementById('stock_v2');
+const c2Input = document.getElementById('stock_c2');
+const resMl = document.getElementById('stock_res_ml');
+const resAgua = document.getElementById('stock_res_agua');
+const resRatio = document.getElementById('stock_res_ratio');
+const resGotas = document.getElementById('stock_res_gotas');
 
-              <div class="flex gap-1.5 pt-0.5">
-                <input type="text" id="labChatInput" placeholder="Escribe un mensaje al laboratorio..." class="app-input flex-1 text-xs">
-                <button type="button" id="labChatSendBtn" class="py-1 px-3 rounded-lg font-bold text-[11px] bg-emerald-600 hover:bg-emerald-500 dark:bg-red-700 dark:hover:bg-red-600 text-white shadow-xs active:scale-95 cursor-pointer flex items-center gap-1">
-                  <span>Enviar</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
+function calculateStock() {
+    const c1 = parseFloat(c1Input.value) || 0;
+    const v2 = parseFloat(v2Input.value) || 0;
+    const c2 = parseFloat(c2Input.value) || 0;
+    if (c1 <= 0 || v2 <= 0) return;
+    const v1 = (c2 * v2) / c1;
+    const water = v2 - v1;
+    resMl.textContent = v1.toFixed(2);
+    resAgua.textContent = water >= 0 ? water.toFixed(2) : '0.00';
+    resRatio.textContent = `1:${(v2 / v1).toFixed(1)}`;
+    resGotas.textContent = Math.round(v1 * 20) + ' gotas';
+}
 
-  <!-- Help & Mobile Install Modal -->
-  <div id="installModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 font-bold text-base">💡</div>
-          <div>
-            <h3 class="text-sm sm:text-base font-semibold text-slate-900 dark:text-red-300">Cómo usar y guardar en tu Celular / iPad</h3>
-            <p class="text-xs text-slate-400">Guía práctica para iOS y Android</p>
-          </div>
-        </div>
-        <button id="closeModalBtn" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 flex items-center justify-center text-base font-bold">&times;</button>
-      </div>
+[c1Input, v2Input, c2Input].forEach(inp => {
+    inp.addEventListener('input', calculateStock);
+});
+calculateStock();
+</script>
 
-      <div class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-3.5 leading-relaxed">
-        <div class="p-3.5 rounded-xl bg-red-50/80 border border-red-200 text-red-950 space-y-1">
-          <strong class="font-semibold block text-xs sm:text-sm text-red-900 flex items-center gap-1.5">
-            <span>⚠️</span> ¿Por qué no aparece "Abrir con Safari" en el iPad / iPhone?
-          </strong>
-          <p class="text-xs leading-normal text-red-800">
-            Es una restricción de seguridad de Apple: Safari en iOS no permite abrir archivos locales desde la app de Drive o Archivos. Además, la "Vista Rápida" de Apple desactiva todo el código interactivo (JavaScript).
-          </p>
-        </div>
-
-        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
-          <div class="font-semibold text-slate-900 dark:text-red-300 flex items-center gap-1.5 text-xs sm:text
+</body>
+</html>
